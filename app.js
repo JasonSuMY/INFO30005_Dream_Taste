@@ -3,9 +3,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', function(req, res) {
-   res.send("Home Page of Matrix");
-});
+app.use(express.static('public'));
 
 app.listen(PORT, function () {
    console.log(`Express serving at port ${PORT}`);
