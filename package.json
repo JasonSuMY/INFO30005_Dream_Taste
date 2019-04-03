@@ -1,0 +1,28 @@
+{
+  "name": "info30005_dream_taste",
+  "version": "1.0.0",
+  "description": "A web application that provides the information of available drinks in the market.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonSuMY/INFO30005_Dream_Taste.git"
+  },
+  "keywords": [
+    "drink",
+    "express",
+    "mongodb",
+    "heroku"
+  ],
+  "author": "Ju Shang, Zhu Yuan, Mingyu Su, Hong Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasonSuMY/INFO30005_Dream_Taste/issues"
+  },
+  "homepage": "https://github.com/JasonSuMY/INFO30005_Dream_Taste#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
