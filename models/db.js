@@ -12,3 +12,5 @@ mongoose.connect(dbURL, {useNewUrlParser: true}, function(err) {
 
 require('./users.js');
 require('./products.js');
+require('./comments.js');
+require('./categories.js');
