@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Products = mongoose.model('products');
+const Products = mongoose.model('Products');
 
 // Load the main page.
 let loadMainPage = function(req, res) {
@@ -36,9 +36,9 @@ let findProductByCategory = function(req, res) {
 // add new product.
 let addProducts = function(req, res) {
     let newProduct = new Products({
-        "name": req.body.name,
-        "description":req.body.description,
-        "category":req.body.category,
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
     });
     newProduct.save(function(err,newProduct){
         if(!err){
