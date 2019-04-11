@@ -29,8 +29,11 @@ let findProductByCategory = function(req, res) {
 let addProducts = function(req, res) {
     let newProduct = new Products({
         name: req.body.name,
+        picture: req.body.picture,
+        price: req.body.price,
         description: req.body.description,
         category: req.body.category,
+        rating: req.body.rating
     });
 
     // Check whether the category of the new product exists in our database.
