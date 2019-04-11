@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/JasonSuMY/INFO30005_Dream_Taste#readme",
   "dependencies": {
+    "GridFS": "^0.3.0",
     "body-parser": "^1.18.3",
     "eslint": "^5.16.0",
     "express": "^4.16.4",
