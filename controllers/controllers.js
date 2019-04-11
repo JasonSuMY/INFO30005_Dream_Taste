@@ -33,7 +33,26 @@ let findProductByCategory = function(req, res) {
     });
 };
 
+// add new product.
+let addProducts = function(req, res) {
+    let newProduct = new Products({
+        "name": req.body.name,
+        "description":req.body.description,
+        "category":req.body.category,
+    });
+    newProduct.save(function(err,newProduct){
+        if(!err){
+            res.send(newProduct);
+        }else{
+            res.sendStatus(400);
+        }
+    });
+}
+
+
+
 module.exports.loadMainPage = loadMainPage;
 module.exports.logIn = logIn;
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
+module.exports.addProducts = addProducts;

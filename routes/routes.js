@@ -14,4 +14,7 @@ router.get('/products', controllers.allProducts);
 // Find by category.
 router.get('/products/:category', controllers.findProductByCategory);
 
+//add products.
+router.post('/products', controllers.addProducts);
+
 module.exports = router;
