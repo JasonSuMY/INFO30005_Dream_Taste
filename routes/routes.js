@@ -9,8 +9,8 @@ const categoriesController = require('../controllers/categoriesController.js');
 // Load the main page.
 router.get('/', controllers.loadMainPage);
 
-// Load the log in page.
-router.get('/logIn', usersController.logIn);
+// Validate the user log in.
+router.post('/logIn', usersController.logIn);
 
 // Display all the products.
 router.get('/products', productsController.allProducts);
