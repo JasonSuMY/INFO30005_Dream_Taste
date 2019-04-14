@@ -15,19 +15,26 @@ Implemented Functions:
 
 Routes (Method-"URL"):
 -Log in: POST-"/logIn"
-        log in function can be tested using a sample account:
-        username: mingyu
-        password: 12345678
+        log in function can be tested using a sample account in the format of 
+        JSON:
+        {
+            "username": "mingyu",
+            "password": "12345678"
+        }
 -Add product: POST-"/products/addProduct"
-        to add a product, a certain format should be followed:
-            name: String,
-            picture: {data: Buffer, contentType: String},
-            price: String,
-            description: String,
-            category: String,
-            rating: {type: Number, min: 0, max: 10}
+        to add a product, a certain format should be followed, and it needs to
+        be a JSON file:
+            {
+                "name": "drink name",
+                "price": "drink price",
+                "description": "A short description of the drink.",
+                "category": "The category of the dinrk.",
+            }
         the category needs to be existed in our database in order to add tihs
         product.
 -Browse by category: GET-"/products/:category"
+        Example: "https://dream-taste.herokuapp.com/products/soft%20drink"
 -All products: GET-"/products"
+        Example: "https://dream-taste.herokuapp.com/products"
 -All categories: GET-"/categories"
+        Example: "https://dream-taste.herokuapp.com/categories"
