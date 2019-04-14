@@ -25,7 +25,9 @@ Routes (Method-"URL"):
             price: String,
             description: String,
             category: String,
-            rating: {type: Number, min: 0, max: 10},
+            rating: {type: Number, min: 0, max: 10}
+        the category needs to be existed in our database in order to add tihs
+        product.
 -Browse by category: GET-"/products/:category"
 -All products: GET-"/products"
 -All categories: GET-"/categories"
