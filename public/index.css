@@ -20,7 +20,7 @@
     background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
     background-position:-680px 0;
     -webkit-background-clip: text;
-    -webkit-text-stroke: 0;
+    -webkit-text-stroke:0;
     padding-right: 300px;
     -webkit-animation-name: chrome_effect;
     -webkit-animation-duration: 6s;
@@ -47,4 +47,39 @@
 
 .windows .taste {
     -webkit-text-stroke: 4px #f008b7;
+}
+
+form>input{
+    border-radius: 25px;
+    width: 270px;
+    outline: none;
+    background-image:url(http://xxx.xx.xxx.xx/Public/img/title_search.png);
+    background-repeat: no-repeat;
+    background-size: 21px 21px;
+    background-position: 95%;
+}
+ul {
+    list-style-type: none;
+    position:relative;
+    top:150px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
 }
