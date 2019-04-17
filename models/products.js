@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 ProductSchema = mongoose.Schema(
     {
         name: String,
-        picture: {data: Buffer, contentType: String},
+        image: {type: String, required: true},
         price: String,
         description: String,
         category: String,
         rating: {type: Number, min: 0, max: 10},
+        comments: String,
     }
 
 
