@@ -14,9 +14,9 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 const controllers = require('../controllers/controllers.js');
-const productsController = require('../controllers/productsController.js');
-const usersController = require('../controllers/usersController.js');
-const categoriesController = require('../controllers/categoriesController.js');
+const productsController = require('../controllers/products.js');
+const usersController = require('../controllers/users.js');
+const categoriesController = require('../controllers/categories.js');
 
 
 // Load the main page.
