@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet", href="/stylesheets/login.css")
+    body
+        form(id="login-form", method="POST")
+            input(type="text", id="username", placeholder="user name")
+            input(type="password", id="password", placeholder="password")
+            input(type="submit", value="Login")

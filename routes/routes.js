@@ -22,8 +22,11 @@ const categories = require('../controllers/categories.js');
 // Load the main page.
 router.get('/', controllers.loadMainPage);
 
+// Display the log in page.
+router.get('/login', users.login);
+
 // Validate the user log in.
-router.post('/logIn', users.validateLogIn);
+router.post('/login', users.validateLogin);
 
 // Display all the products.
 router.get('/products', products.allProducts);
@@ -32,8 +35,9 @@ router.get('/products', products.allProducts);
 router.get('/products/:category', products.findProductByCategory);
 
 // Add products.
-router.post('/products/addProduct', upload.single('image'),products.addProducts);
+router.post('/products/addProduct', upload.single('image'), products.addProducts);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);
+
 module.exports = router;

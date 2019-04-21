@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 
+let login = function(req, res) {
+    res.render("login", {
+        title: "User Login"
+    });
+};
+
 // Validate the user log in.
-let validateLogIn = function(req, res) {
+let validateLogin = function(req, res) {
     Users.findOne({username: req.body.username, password: req.body.password}, 
         function(err, user) {
             if (!err) {
@@ -17,4 +23,5 @@ let validateLogIn = function(req, res) {
         });
 };
 
-module.exports.validateLogIn = validateLogIn;
+module.exports.login = login;
+module.exports.validateLogin = validateLogin;
