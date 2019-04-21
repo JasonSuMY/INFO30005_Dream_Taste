@@ -56,7 +56,7 @@ button{
 
 }
 
-form>input{
+form > input{
     border-radius: 50px;
     position:relative;
     top:112.5px;

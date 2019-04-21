@@ -14,26 +14,26 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 const controllers = require('../controllers/controllers.js');
-const productsController = require('../controllers/products.js');
-const usersController = require('../controllers/users.js');
-const categoriesController = require('../controllers/categories.js');
+const products = require('../controllers/products.js');
+const users = require('../controllers/users.js');
+const categories = require('../controllers/categories.js');
 
 
 // Load the main page.
 router.get('/', controllers.loadMainPage);
 
 // Validate the user log in.
-router.post('/logIn', usersController.logIn);
+router.post('/logIn', users.validateLogIn);
 
 // Display all the products.
-router.get('/products', productsController.allProducts);
+router.get('/products', products.allProducts);
 
 // Find by category.
-router.get('/products/:category', productsController.findProductByCategory);
+router.get('/products/:category', products.findProductByCategory);
 
 // Add products.
-router.post('/products/addProduct', upload.single('image'),productsController.addProducts);
+router.post('/products/addProduct', upload.single('image'),products.addProducts);
 
 // Display all the categories
-router.get('/categories', categoriesController.allCategories);
+router.get('/categories', categories.allCategories);
 module.exports = router;

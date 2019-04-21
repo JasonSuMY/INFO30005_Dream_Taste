@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        title #{title}
+        link(rel="stylesheet", href="/stylesheets/default.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+    body
+        block header
+            h1(class="Dream") Dream
+            h3(class="taste") taste
+
+            a(href='/logIn'): button(type="button", id="login1") login
+            a(href='/register'): button(type="button", id="register1") register
+
+            ul
+                li: a(href="/") Home
+                li: a(href="/categories") Category
+                li: a(href="#Trending") Trending
+                li: a(href="/products") All Products
+                li: a(href="#Contact-Us") Contact Us
+            
+            form(method="POST")
+                input(type="text", placeholder="search")
+        block content
