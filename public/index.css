@@ -53,7 +53,7 @@
 body {
     background-image: url(./images/pic2.jpg);
     background-repeat: no-repeat;
-    background-size:100% 35%;
+    background-size:1400px 314px;
 }
 
 
@@ -77,7 +77,7 @@ form>input{
     position:relative;
     top:112.5px;
     height:60px;
-    width:1200Px;
+    width:1400Px;
     padding:0 5px;
     margin:0;
 }
@@ -181,8 +181,8 @@ ul li:hover ul {
     opacity: 0.7;
 }
 
-/*-------footer-------*/
-/*footer nav{
+
+footer nav{
     float:right;
 }
 footer nav ul{
@@ -200,6 +200,8 @@ footer nav ul li a{
 }
 
 footer{
+    position:relative;
+    top:150px;
     width: 100%;
     background-color: #222;
     padding: 60px 0px;
