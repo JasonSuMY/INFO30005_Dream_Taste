@@ -41,7 +41,7 @@ body {
 
 #nav_bar{
     display: inline-block;
-    background-color: #EEEEEE;
+    background-color: #312109;
     position:relative;
     top:112.5px;
     height:60px;
@@ -54,7 +54,7 @@ a {
     display:inline-block;
     width:150px;
     height:60px;
-    color: #000000;
+    color: #FDE6C4;
     text-decoration: none;
     font:17px/60px arial;
     position: relative;
@@ -75,26 +75,12 @@ a:hover {
     outline: none;
 }
 
-footer nav{
-    float:right;
-}
-
-footer nav ul li{
-    display: inline-block;
-    margin-left: 20px;
-    list-style: none;
-}
-footer nav ul li a{
-    font-family: Lato;
-    font-weight: 400;
-    font-size:14px;
-    color: #fff;
-}
-
 footer{
     position:relative;
     top:150px;
     width: 100%;
-    background-color: #222;
+    background-color: #312109;
     padding: 60px 0px;
+    color: #FDE6C4;
+    text-align: center;
 }

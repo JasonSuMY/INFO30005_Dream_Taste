@@ -1,7 +1,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 150px;
+    grid-template-rows: 225px;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     position: relative;
@@ -13,12 +13,12 @@
 .grid-item {
     background-color: #FDBB58;
     text-align: center;
-    line-height: 150px;
-    font-size: 20px;
+    line-height: 225px;
 }
 
 .grid-item > a {
     color: rgb(255, 255, 255);
+    font-size: 25px;
 }
 
 
