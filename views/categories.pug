@@ -5,6 +5,6 @@ block content
     div.grid-container
         each category in categories
             div.grid-item
-                p #{category.name}
+                a(href=`/products/${category.name}`) #{category.name}
 
     

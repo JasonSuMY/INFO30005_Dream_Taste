@@ -5,14 +5,14 @@ html
         link(rel="stylesheet", href="stylesheets/default.css")
         link(rel = "stylesheet", href ="/bootstrap-3.3.7-dist/css/bootstrap.css ")
         link(rel = "stylesheet", href ="/bootstrap-3.3.7-dist/css/bootstrap-theme.css")
-        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         mata(charset="UTF-8")
         sciprt(src="../data/jquery.js")
         script(src="../bootstrap-3.3.7-dist/js/bootstrap.js")
     body
         block header
-            h1(class="Dream") Dream
-            h3(class="taste") taste
+            h1.Dream Dream
+            h3.taste taste
 
             div(id="login")
                 a(href='/login'): button(type="button") login
@@ -25,14 +25,14 @@ html
                 a(href="#Trending") Trending
                 a(href="/products") All Products
                 a(href="#Contact-Us") Contact Us
-            
+                
             form(method="POST")
                 input(type="text", id="search", placeholder="search")
             
         block content
 
         block footer
-            footer(class = "wrapper")
+            footer.wrapper
                 nav
                     ul
                         li: a(herf = "Contact") Contact

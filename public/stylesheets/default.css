@@ -1,5 +1,10 @@
+body {
+    background-image: url(../images/pic2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 400px;
+}
+
 .Dream{
-    position: relative;
     background-image: -webkit-linear-gradient(#000000 0%, #000000 46%, #000000 50%, #000000 54%, #000000 58%, #000000 90%, #000000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -27,26 +32,11 @@
     z-index: 20;
 }
 
-body {
-    background-image: url(../images/pic2.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 400px;
-}
-
 #login, #register {
     display: inline-block;
     position: relative;
     bottom: 200px;
-    left: 1000px;
-}
-
-#search {
-    float:right;
-    border-radius: 50px;
-    position:relative;
-    top:73px;
-    width: 200px;
-    outline: none;
+    left: 950px;
 }
 
 #nav_bar{
@@ -74,6 +64,15 @@ a {
 a:hover {
     background-color: #666666;
     color:#FFFFFF;
+}
+
+#search {
+    float:right;
+    border-radius: 50px;
+    position:relative;
+    top:73px;
+    width: 200px;
+    outline: none;
 }
 
 footer nav{
