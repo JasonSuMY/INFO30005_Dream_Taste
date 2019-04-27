@@ -5,7 +5,10 @@ const Categories = mongoose.model('Categories');
 let allCategories = function(req, res) {
     Categories.find(function(err, categories) {
         if (!err) {
-            res.send(categories);
+            res.render("categories", {
+                title: "All Categories",
+                categories: categories
+            });
         } else {
             res.sendStatus(400);
         }

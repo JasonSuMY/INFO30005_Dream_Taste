@@ -2,7 +2,7 @@ doctype html
 html
     head
         title #{title}
-        link(rel="stylesheet", href="/stylesheets/default.css")
+        link(rel="stylesheet", href="stylesheets/default.css")
         link(rel = "stylesheet", href ="/bootstrap-3.3.7-dist/css/bootstrap.css ")
         link(rel = "stylesheet", href ="/bootstrap-3.3.7-dist/css/bootstrap-theme.css")
         meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -14,21 +14,20 @@ html
             h1(class="Dream") Dream
             h3(class="taste") taste
 
-            a(href='/login'): button(type="button", id="login") login
-            a(href='/register'): button(type="button", id="register") register
+            div(id="login")
+                a(href='/login'): button(type="button") login
+            div(id="register")
+                a(href='/register'): button(type="button") register
 
-            ul(id = "nav", class = "nav")
-                li: a(href="/") Home
-                li: a(href="/categories") Category
-                    ul
-                        li: a(href="#SoftDrink") SoftDrink
-                        li: a(href="#MilkProduct") MilkProduct
-                li: a(href="#Trending") Trending
-                li: a(href="/products") All Products
-                li: a(href="#Contact-Us") Contact Us
+            nav(id = "nav_bar")
+                a(href="/") Home
+                a(href="/categories") Category
+                a(href="#Trending") Trending
+                a(href="/products") All Products
+                a(href="#Contact-Us") Contact Us
             
             form(method="POST")
-                input(type="text", placeholder="search")
+                input(type="text", id="search", placeholder="search")
             
         block content
 
