@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Product: Coke Cola</title>
-	<link rel = "stylesheet" href = "public/stylesheets/product1.css">
+	<link rel = "stylesheet" href = "stylesheets/product1.css">
 	
 </head>
 
@@ -12,21 +12,23 @@
 	<section class="web_title">
 		<h1 class="Dream">Dream</h1>
 	    <h3 class="taste">taste</h3><a href="/logIn">
-		    <button type="button" id="login1">login</button></a><a href="/register">
-		    <button type="button" id="register1">register</button></a>
-
-	    <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/categories">Category</a></li>
-          <li><a href="#Trending">Trending</a></li>
-          <li><a href="/products">All Products</a></li>
-          <li><a href="#Contact-Us">Contact Us</a></li>
-        </ul>
-
-        <form method="POST">
-          <input type="text" placeholder="search">
+		<div class = "title_detail">
+			<ul id = "nav" class = "nav">
+		     	<li><a href="#Home">Home</a></li>
+                <li><a href="#Catalog">Catalog</a>
+                    <ul>
+                    	<li><a href="#SoftDrink">SoftDrink</a></li>
+                        <li><a href="#MilkProduct">MilkProduct</a></li>
+                    </ul>
+                </li>
+                <li><a href="#Trending ">Trending</a></li>
+                <li><a href="#All Product">All Product</a></li>
+                <li><a href="#Contact Us">Contact Us</a></li>
+             </ul>
+        </div>
+        <form>
+            <input type="text" placeholder="    search">
         </form>
-
     </section>
 
 	<section class = "product">
