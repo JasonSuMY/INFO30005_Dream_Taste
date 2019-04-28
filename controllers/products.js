@@ -6,7 +6,10 @@ const Categories = mongoose.model('Categories');
 let allProducts = function(req, res) {
     Products.find(function(err, products) {
         if (!err) {
-            res.send(products);
+            res.render("products", {
+                title: "All Products",
+                products: products
+            });
         } else {
             res.sendStatus(400);
         }
@@ -18,7 +21,10 @@ let findProductByCategory = function(req, res) {
     const productCategory = req.params.category;
     Products.find({category: productCategory}, function(err, products) {
         if (!err) {
-            res.send(products);
+            res.render("products", {
+                title: productCategory,
+                products: products
+            });
         } else {
             res.sendStatus(404);
         }
@@ -55,6 +61,18 @@ let addProducts = function(req, res) {
 
 };
 
+let findProductByID = function findProductByID(req, res) {
+    const id = req.params.id;
+    Products.findById(id, function(err, product) {
+        if (!err) {
+            res.json(product);
+        } else {
+            res.sendStatus(404);
+        }
+    });
+};
+
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
 module.exports.addProducts = addProducts;
+module.exports.findProductByID = findProductByID;

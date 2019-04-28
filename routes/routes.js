@@ -31,8 +31,11 @@ router.post('/login', users.validateLogin);
 // Display all the products.
 router.get('/products', products.allProducts);
 
-// Find by category.
-router.get('/products/:category', products.findProductByCategory);
+// Find all products wintin a category.
+router.get('/categories/:category', products.findProductByCategory);
+
+// Find product by id
+router.get('/products/:id', products.findProductByID);
 
 // Add products.
 router.post('/products/addProduct', upload.single('image'), products.addProducts);
