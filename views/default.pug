@@ -15,11 +15,8 @@ html
             header
                 img(src="images/logo03.png", alt="logo", id="logo")
 
-                div(id="login")
-                    a(href='/login'): button(type="button") login
-                    //- button(type="button", onlick=directTo("/login")) login
-                div(id="register")
-                    a(href='/register'): button(type="button") register
+                a(href='/login', class="button", id="login") Log In
+                a(href='/register', class="button", id="register") Register
 
                 nav(id = "nav_bar")
                     a(href="/") Home
