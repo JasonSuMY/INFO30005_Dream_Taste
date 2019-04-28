@@ -9,26 +9,28 @@ html
         mata(charset="UTF-8")
         sciprt(src="../data/jquery.js")
         script(src="../bootstrap-3.3.7-dist/js/bootstrap.js")
+        script(type="text/javascript", src="../javascripts/link.js")
     body
         block header
-            h1.Dream Dream
-            h3.taste taste
+            header
+                img(src="images/logo03.png", alt="logo", id="logo")
 
-            div(id="login")
-                a(href='/login'): button(type="button") login
-            div(id="register")
-                a(href='/register'): button(type="button") register
+                div(id="login")
+                    a(href='/login'): button(type="button") login
+                    //- button(type="button", onlick=directTo("/login")) login
+                div(id="register")
+                    a(href='/register'): button(type="button") register
 
-            nav(id = "nav_bar")
-                a(href="/") Home
-                a(href="/categories") Category
-                a(href="#Trending") Trending
-                a(href="/products") All Products
-                a(href="#Contact-Us") Contact Us
+                nav(id = "nav_bar")
+                    a(href="/") Home
+                    a(href="/categories") Category
+                    a(href="#Trending") Trending
+                    a(href="/products") All Products
+                    a(href="#Contact-Us") Contact Us
+                    
+                form(method="POST")
+                    input(type="text", id="search", placeholder="search")
                 
-            form(method="POST")
-                input(type="text", id="search", placeholder="search")
-            
         block content
 
         block footer
