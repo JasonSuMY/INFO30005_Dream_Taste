@@ -28,6 +28,12 @@ router.get('/login', users.login);
 // Validate the user log in.
 router.post('/login', users.validateLogin);
 
+// Display the register page.
+
+
+// Validate the registration information.
+
+
 // Display all the products.
 router.get('/products', products.allProducts);
 

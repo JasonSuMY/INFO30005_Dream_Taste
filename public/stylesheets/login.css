@@ -1,25 +1,19 @@
-body{
-    background-image:
-            linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(../images/pic1.jpg);
-
-    height: 100vh;
+.login-page{
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(../images/pic1.jpg);
     background-size: cover;
     background-position: center;
-}
-
-.login-page{
-    width: 360px;
-    padding: 10% 0 0;
-    margin: auto;
+    position: relative;
+    height: 600px;
 }
 
 .form{
     position: relative;
+    top: 100px;
     z-index: 1;
     background: #ffffff;
     max-width: 360px;
-    margin: 0 auto 100px;
     padding: 45px;
+    margin: auto;
     text-align: center;
 }
 

@@ -11,7 +11,8 @@ header {
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 0% 10%;
-    clip: rect(0, 200px)
+    clip: rect(0, 200px);
+    height: 260px;
 }
 
 #logo {
@@ -54,12 +55,11 @@ header {
 
 #nav_bar{
     background-color: #312109;
-    position: absolute;;
+    position: absolute;
     top:200px;
     height:60px;
     width:100%;
-    padding:0 5px;
-    margin:0;
+    padding:0px 5px;
 }
 
 a {
@@ -80,18 +80,16 @@ a:hover {
 }
 
 #search {
-    float:right;
+    float: right;
     border-radius: 50px;
-    position:absolute;
-    top:220px;
-    left: 1050px;
+    position:relative;
+    top: 16px;
     width: 200px;
     outline: none;
 }
 
 footer{
     position:relative;
-    top:150px;
     width: 100%;
     background-color: #312109;
     padding: 60px 0px;

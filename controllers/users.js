@@ -23,5 +23,9 @@ let validateLogin = function(req, res) {
         });
 };
 
+let register = function(req, res) {
+    
+};
+
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;

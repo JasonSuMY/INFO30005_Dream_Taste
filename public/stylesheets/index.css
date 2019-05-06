@@ -25,7 +25,6 @@ ul li:hover ul {
 
 .column {
     position:relative;
-    top:150px;
     float: left;
     width: 20%;
     padding: 0 10px;
