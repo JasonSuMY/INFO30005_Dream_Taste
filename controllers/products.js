@@ -65,7 +65,10 @@ let findProductByID = function findProductByID(req, res) {
     const id = req.params.id;
     Products.findById(id, function(err, product) {
         if (!err) {
-            res.json(product);
+            res.render("product", {
+                title: product.name,
+                product: product
+            })
         } else {
             res.sendStatus(404);
         }
