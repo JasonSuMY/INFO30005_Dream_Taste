@@ -7,7 +7,7 @@ ProductSchema = mongoose.Schema(
         description: String,
         category: String,
         rating: {type: Number, min: 0, max: 10},
-        comments: String,
+        comments: String
     }
 
 

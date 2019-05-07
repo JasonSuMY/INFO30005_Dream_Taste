@@ -1,6 +1,24 @@
 const mongoose = require('mongoose');
 const Products = mongoose.model('Products');
 const Categories = mongoose.model('Categories');
+const express = require('express');
+
+// Used to upload image.
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+    }
+})
+
+
+
+const upload = multer({storage: storage,
+    limits : {fileSize: 1024 * 1024 * 5}});
 
 // Load all the products.
 let allProducts = function(req, res) {
@@ -33,7 +51,7 @@ let findProductByCategory = function(req, res) {
 
 //Add a new product.
 let addProducts = function(req, res) {
-    console.log(req.file)
+    console.log(req.file);
     let newProduct = new Products({
         name: req.body.name,
         image: req.file.path,
@@ -79,3 +97,4 @@ module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
 module.exports.addProducts = addProducts;
 module.exports.findProductByID = findProductByID;
+module.exports.upload = upload;
