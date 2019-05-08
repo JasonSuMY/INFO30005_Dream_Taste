@@ -18,10 +18,10 @@ router.get('/login', users.login);
 router.post('/login', users.validateLogin);
 
 // Display the register page.
-
+router.get('/register', users.login);
 
 // Validate the registration information.
-
+router.post('/register', users.validateLogin);
 
 // Display all the products.
 router.get('/products', products.allProducts);
