@@ -6,15 +6,16 @@ block content
             .form-group
                 label(for="productName") Product Name:
                 input(type="text", id="productName", class="form-control", name="productName", placeholder="product name")
-            .form-group
-                label(for="productImage") Product Image: 
-                input(type="file", id="productImage", name="productImage")
+            .custom-file
+                input(type="file", id="productImage", class="custom-file-input", name="productImage")
+                label(class="custom-file-label" for="productImage") Choose file
             .form-group
                 label(for="description") Product Description:
                 textarea(id="productDescription", class="form-control", rows=5, name="description", placeholder="product description")
             .form-group
                 label(for="category")
-                select(id="category", class="form-control", name="category")
+                select(id="category", class="custom-select", name="category")
+                    option(selected) Product Category
                     each category in categories
                         option #{category.name}
             button(type="submit", class="btn btn-primary") Add Product
