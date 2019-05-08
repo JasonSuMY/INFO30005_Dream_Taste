@@ -32,8 +32,11 @@ router.get('/categories/:category', products.findProductByCategory);
 // Find product by id
 router.get('/products/:id', products.findProductByID);
 
-// Add products.
-router.post('/products/addProduct', products.upload.single('image'), products.addProducts);
+// Display the add-product page.
+router.get('/addProduct', products.displayAddProduct);
+
+// Add the product the the database.
+router.post('/addProduct', products.upload.single('image'), products.addProducts);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);

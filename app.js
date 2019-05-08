@@ -5,9 +5,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// make uploads folder available in everywhere.
-app.use('/uploads',express.static('uploads'));
-
 const PORT = process.env.PORT || 3000;
 
 // Set the view engine
@@ -15,6 +12,9 @@ app.set('view engine', 'pug');
 
 // Test express where the staic files are kepts
 app.use(express.static(__dirname + '/public'));
+
+// make uploads folder available in everywhere.
+app.use('/uploads', express.static('uploads'));
 
 // Set up the database.
 require('./models/db.js');

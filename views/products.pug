@@ -4,6 +4,8 @@ block content
     link(rel="stylesheet", href="/stylesheets/products.css")
 
     div.grid-container
+        .gird-item
+            a(href="/addProduct") Add Product
         each product in products
             div.grid-item
                 a(href=`/products/${product.id}`) #{product.name}

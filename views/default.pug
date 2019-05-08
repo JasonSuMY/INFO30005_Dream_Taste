@@ -12,23 +12,25 @@ html
         script(type="text/javascript", src="javascripts/link.js")
     body
         block header
-            header
-                img(src="/images/logo03.png", alt="logo", id="logo")
+            header.container-fluid
+                div.row
+                    img(src="/images/logo03.png", alt="logo", id="logo")
 
-                a(href='/login', class="button", id="login") Log In
-                a(href='/register', class="button", id="register") Register
-
-                nav(id = "nav_bar")
-                    a(href="/") Home
-                    a(href="/categories") Category
-                    a(href="#Trending") Trending
-                    a(href="/products") All Products
-                    a(href="#Contact-Us") Contact Us
-                    
-                form(method="POST")
-                    input(type="text", id="search", placeholder="search")
+                    a(href='/login', class="button", id="login") Log In
+                    a(href='/register', class="button", id="register") Register
+                div.row
+                    nav(id = "nav_bar")
+                        a(href="/") Home
+                        a(href="/categories") Category
+                        a(href="#Trending") Trending
+                        a(href="/products") All Products
+                        a(href="#Contact-Us") Contact Us
+                        
+                    form(method="POST")
+                        input(type="text", id="search", placeholder="search")
                 
         block content
 
         block footer
-            footer Copyright &copy; Matrix 2019
+            footer.container-fluid
+             p.col-12 Copyright &copy; Matrix 2019

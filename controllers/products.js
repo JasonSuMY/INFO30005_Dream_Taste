@@ -15,8 +15,6 @@ const storage = multer.diskStorage({
     }
 })
 
-
-
 const upload = multer({storage: storage,
     limits : {fileSize: 1024 * 1024 * 5}});
 
@@ -49,9 +47,21 @@ let findProductByCategory = function(req, res) {
     });
 };
 
+let displayAddProduct = function(req, res) {
+    Categories.find(function(err, categories) {
+        if (!err) {
+            res.render('addProduct', {
+                title: "Add Product",
+                categories: categories
+            });
+        } else {
+            res.sendStatus(400);
+        }
+    });
+};
+
 //Add a new product.
 let addProducts = function(req, res) {
-    console.log(req.file);
     let newProduct = new Products({
         name: req.body.name,
         image: req.file.path,
@@ -95,6 +105,7 @@ let findProductByID = function findProductByID(req, res) {
 
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
+module.exports.displayAddProduct = displayAddProduct;
 module.exports.addProducts = addProducts;
 module.exports.findProductByID = findProductByID;
 module.exports.upload = upload;
