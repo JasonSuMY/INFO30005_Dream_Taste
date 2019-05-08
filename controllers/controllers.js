@@ -1,7 +1,17 @@
+const mongoose = require('mongoose');
+const Products = mongoose.model('Products');
+
 // Load the main page.
 let loadMainPage = function(req, res) {
-    res.render('index', {
-        title: "Home"
+    Products.find(function(err, products) {
+        if (!err) {
+            res.render("index", {
+                title: "All Products",
+                products: products
+            });
+        } else {
+            res.sendStatus(400);
+        }
     });
 }
 
