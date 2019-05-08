@@ -11,7 +11,7 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function(req, file, next) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 })
 
@@ -24,8 +24,8 @@ const upload = multer({
 //Add a new product.
 let addProduct = function(req, res) {
     let newProduct = new Products({
-        name: req.body.name,
-        image: req.file.path,
+        name: req.body.productName,
+        image: req.file.filename,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
