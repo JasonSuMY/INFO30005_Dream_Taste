@@ -11,10 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'pug');
 
 // Test express where the staic files are kepts
-app.use(express.static(__dirname + '/public'));
-
-// make uploads folder available in everywhere.
-app.use('/uploads', express.static('uploads'));
+app.use(express.static('./public'));
 
 // Set up the database.
 require('./models/db.js');
