@@ -103,14 +103,17 @@ let findProductByID = function(req, res) {
 
 // Search the products based on the query input by user.
 let search = function(req, res) {
-    const search = req.body.search.toUpperCase();
-    Products.find({name: search}, function(err, products) {
+    const search = req.body.search;
+    Products.find({name: { 
+                        "$regex": search,
+                        "$options": "i"
+                    }}, function(err, products) {
         if (err) {
             res.sendStatus(400);
         } else {
             if (products.length > 0) {
-                res.render('products', {
-                    title: search,
+                res.render('searchResults', {
+                    title: `Search Results for '${search}'`,
                     products: products
                 });
             } else {

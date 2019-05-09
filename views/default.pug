@@ -6,21 +6,21 @@ html
         mata(charset="UTF-8")
         link(rel = "stylesheet", href ="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
         link(rel="stylesheet", href="/stylesheets/default.css")
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
     body
         block header
             header.container-fluid
-                div.row
-                    div.col-md-10
+                .row
+                    .col-md-10
                         img(src="/images/logo03.png", alt="logo", id="logo")
-                    div.col-md-1
-                        a(href='/login', class="btn", id="login", role="button") Log In
-                    div.col-md-1
-                        a(href='/register', class="btn", id="register", role="button") Register
+                    .col-md-1
+                        a(href='/login', class="btn btn-warning", id="login", role="button") Log In
+                    .col-md-1
+                        a(href='/register', class="btn btn-warning", id="register", role="button") Register
                 nav(class="row navbar navbar-expand-sm")
-                    .col-md-8
+                    .col-md-9
                         ul.navbar-nav
                             li.nav-item
                                 a(class="nav-link", href="/") Home
@@ -32,10 +32,10 @@ html
                                 a(class="nav-link", href="/products") All Products
                             li.nav-item
                                 a(class="nav-link", href="#Contact-Us") Contact Us
-                    .col-md-4  
-                        form(class="form-inline", action="/search", method="POST")
-                            input(type="text", name="search", id="search", class="form-control mr-sm-2", placeholder="Search")
-                            button(type="submit", class="btn") Search
+                    .col-md-3
+                        form(class="form-inline ", action="/search", method="POST")
+                            input(type="text", name="search", id="search", class="form-control mr-md-2", placeholder="Search")
+                            button(type="submit", class="btn btn-warning") Search
                 
         block content
 
