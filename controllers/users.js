@@ -24,8 +24,11 @@ let validateLogin = function(req, res) {
 };
 
 let register = function(req, res) {
-    
+    res.render('register', {
+       title: "User Registrations"
+    });
 };
 
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
+module.exports.register = register;
