@@ -24,7 +24,7 @@ const upload = multer({
 //Add a new product.
 let addProduct = function(req, res) {
     let newProduct = new Products({
-        name: req.body.productName,
+        name: req.body.productName.toUpperCase(),
         image: req.file.filename,
         price: req.body.price,
         description: req.body.description,
@@ -87,7 +87,7 @@ let displayAddProduct = function(req, res) {
 };
 
 // Find a product by its ID.
-let findProductByID = function findProductByID(req, res) {
+let findProductByID = function(req, res) {
     const id = req.params.id;
     Products.findById(id, function(err, product) {
         if (!err) {
@@ -101,9 +101,31 @@ let findProductByID = function findProductByID(req, res) {
     });
 };
 
+// Search the products based on the query input by user.
+let search = function(req, res) {
+    const search = req.body.search.toUpperCase();
+    Products.find({name: search}, function(err, products) {
+        if (err) {
+            res.sendStatus(400);
+        } else {
+            if (products.length > 0) {
+                res.render('products', {
+                    title: search,
+                    products: products
+                });
+            } else {
+                res.render('productNotFound', {
+                    title: "Product not found!"
+                })
+            }
+        }
+    }); 
+};
+
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
 module.exports.displayAddProduct = displayAddProduct;
 module.exports.addProduct = addProduct;
 module.exports.findProductByID = findProductByID;
 module.exports.upload = upload;
+module.exports.search = search;

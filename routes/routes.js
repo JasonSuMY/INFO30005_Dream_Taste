@@ -41,4 +41,7 @@ router.post('/addProduct', products.upload, products.addProduct);
 // Display all the categories
 router.get('/categories', categories.allCategories);
 
+// Display the search results based on the user's query.
+router.post('/search', products.search);
+
 module.exports = router;
