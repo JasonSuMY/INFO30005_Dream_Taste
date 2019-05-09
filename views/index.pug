@@ -1,91 +1,14 @@
 extends default
 
 block content
-    //- link(rel="stylesheet", href="stylesheets/index.css")
-    
-    div(class="row")
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink1.jpg", alt ="alcohol")
-                h3 Captain Morgan
-                p Some text
-                p: button More Details
+    link(rel="stylesheet", href="/stylesheets/index.css")
 
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink3.jpg", alt ="alcohol")
-                h3 Fernet Branca
-                p Some text
-                p: button More Details
-
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink1.jpg", alt ="alcohol")
-                h3 Captain Morgan
-                p Some text
-                p: button More Details
-
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink4.jpg", alt ="alcohol")
-                h3 Crown Royal
-                p Some text
-                p: button More Details
-
-    div(class="row")
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink1.jpg", alt ="alcohol")
-                h3 Captain Morgan
-                p Some text
-                p: button More Details
-
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink3.jpg", alt ="alcohol")
-                h3 Fernet Branca
-                p Some text
-                p: button More Details
-
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink1.jpg", alt ="alcohol")
-                h3 Captain Morgan
-                p Some text
-                p: button More Details
-
-        div(class="column")
-            div(class="card")
-                img(src="/images/products/drink4.jpg", alt ="alcohol")
-                h3 Crown Royal
-                p Some text
-                p: button More Details
-
-    div(class="row")
-            div(class="column")
-                div(class="card")
-                    img(src="/images/products/drink1.jpg", alt ="alcohol")
-                    h3 Captain Morgan
-                    p Some text
-                    p: button More Details
-
-            div(class="column")
-                div(class="card")
-                    img(src="/images/products/drink3.jpg", alt ="alcohol")
-                    h3 Fernet Branca
-                    p Some text
-                    p: button More Details
-
-            div(class="column")
-                div(class="card")
-                    img(src="/images/products/drink1.jpg", alt ="alcohol")
-                    h3 Captain Morgan
-                    p Some text
-                    p: button More Details
-
-            div(class="column")
-                div(class="card")
-                    img(src="/images/products/drink4.jpg", alt ="alcohol")
-                    h3 Crown Royal
-                    p Some text
-                    p: button More Details
+    .container-fluid
+        .row
+            each product in products
+                div(class="col-md-3 card")
+                    img(class="card-img-top", src=`/uploads/${product.image}`, alt="Drink image")
+                    .card-body
+                        h4.card-title #{product.name}
+                        p.card-text #{product.description}
+                        a(href=`/products/${product.id}`, class="btn btn-warning") More Detail

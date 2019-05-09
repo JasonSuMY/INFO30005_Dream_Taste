@@ -3,9 +3,12 @@ extends default
 block content
     link(rel="stylesheet", href="/stylesheets/products.css")
 
-    div.grid-container
-        .gird-item
-            a(href="/addProduct") Add Product
-        each product in products
-            div.grid-item
-                a(href=`/products/${product.id}`) #{product.name}
+    .container-fluid
+        .row
+            div(id="addProduct", class='col-md-3')
+                a(href="/addProduct") Add Product
+            each product in products
+                div(class="col-md-3 card")
+                    img(class="card-img-top", src=`/uploads/${product.image}`, alt="Drink image")
+                    .card-body
+                        a(href=`/products/${product.id}`, class="btn btn-waring streched-link") More Detail

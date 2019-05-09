@@ -2,21 +2,46 @@ const mongoose = require('mongoose');
 const Products = mongoose.model('Products');
 const Categories = mongoose.model('Categories');
 const express = require('express');
+const path = require('path');
 
 // Used to upload image.
 const multer = require('multer');
 
+// Initialise storage engine.
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
+    destination: './public/uploads/',
+    filename: function(req, file, next) {
+        next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 })
 
-const upload = multer({storage: storage,
-    limits : {fileSize: 1024 * 1024 * 5}});
+// Initialise upload.
+const upload = multer({
+    storage: storage,
+    limits : {fileSize: 1024 * 1024 * 5}
+}).single("productImage");
+
+//Add a new product.
+let addProduct = function(req, res) {
+    let newProduct = new Products({
+        name: req.body.productName.toUpperCase(),
+        image: req.file.filename,
+        price: req.body.price,
+        description: req.body.description,
+        category: req.body.category,
+        rating: req.body.rating,
+        comments: req.body.rating
+    });
+
+    // Save the product to the database.
+    newProduct.save(function(err, newProduct){
+        if(!err){
+            res.redirect('/products');
+        }else{
+            res.sendStatus(400);
+        }
+    });
+};
 
 // Load all the products.
 let allProducts = function(req, res) {
@@ -47,6 +72,7 @@ let findProductByCategory = function(req, res) {
     });
 };
 
+// Display the add-prodcut page to the user.
 let displayAddProduct = function(req, res) {
     Categories.find(function(err, categories) {
         if (!err) {
@@ -60,36 +86,8 @@ let displayAddProduct = function(req, res) {
     });
 };
 
-//Add a new product.
-let addProducts = function(req, res) {
-    let newProduct = new Products({
-        name: req.body.name,
-        image: req.file.path,
-        price: req.body.price,
-        description: req.body.description,
-        category: req.body.category,
-        rating: req.body.rating,
-        comments: req.body.rating
-    });
-
-    // Check whether the category of the new product exists in our database.
-    Categories.findOne({name: newProduct.category}, function(err, category) {
-        if (category) {
-            newProduct.save(function(err, newProduct){
-                if(!err){
-                    res.send(newProduct);
-                }else{
-                    res.sendStatus(400);
-                }
-            });
-        } else {
-            res.send("The category is not defined.");
-        }
-    });
-
-};
-
-let findProductByID = function findProductByID(req, res) {
+// Find a product by its ID.
+let findProductByID = function(req, res) {
     const id = req.params.id;
     Products.findById(id, function(err, product) {
         if (!err) {
@@ -103,9 +101,34 @@ let findProductByID = function findProductByID(req, res) {
     });
 };
 
+// Search the products based on the query input by user.
+let search = function(req, res) {
+    const search = req.body.search;
+    Products.find({name: { 
+                        "$regex": search,
+                        "$options": "i"
+                    }}, function(err, products) {
+        if (err) {
+            res.sendStatus(400);
+        } else {
+            if (products.length > 0) {
+                res.render('searchResults', {
+                    title: `Search Results for '${search}'`,
+                    products: products
+                });
+            } else {
+                res.render('productNotFound', {
+                    title: "Product not found!"
+                })
+            }
+        }
+    }); 
+};
+
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
 module.exports.displayAddProduct = displayAddProduct;
-module.exports.addProducts = addProducts;
+module.exports.addProduct = addProduct;
 module.exports.findProductByID = findProductByID;
 module.exports.upload = upload;
+module.exports.search = search;

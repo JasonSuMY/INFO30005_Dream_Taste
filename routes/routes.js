@@ -36,9 +36,12 @@ router.get('/products/:id', products.findProductByID);
 router.get('/addProduct', products.displayAddProduct);
 
 // Add the product the the database.
-router.post('/addProduct', products.upload.single('image'), products.addProducts);
+router.post('/addProduct', products.upload, products.addProduct);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);
+
+// Display the search results based on the user's query.
+router.post('/search', products.search);
 
 module.exports = router;
