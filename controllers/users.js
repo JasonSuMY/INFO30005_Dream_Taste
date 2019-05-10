@@ -13,9 +13,9 @@ let validateLogin = function(req, res) {
         function(err, user) {
             if (!err) {
                 if (user) {
-                    res.send("Log in successfully");
+                    res.redirect('/');
                 } else {
-                    res.send("Log in failed");
+                    res.redirect('/login');
                 }
             } else {
                 res.sendStatus(400);
@@ -23,12 +23,31 @@ let validateLogin = function(req, res) {
         });
 };
 
-let register = function(req, res) {
+// Display the registration page
+let displayRegister = function(req, res) {
     res.render('register', {
        title: "User Registrations"
     });
 };
 
+// Create a user based on registration information
+let register = function(req, res) {
+    const newUser = new Users({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email
+    });
+
+    newUser.save(function(err, newUser) {
+        if (!err) {
+            res.redirect('/');
+        } else {
+            res.redirect('/register');
+        }
+    });
+};
+
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
+module.exports.displayRegister = displayRegister;
 module.exports.register = register;

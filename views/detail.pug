@@ -2,13 +2,14 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/detail.css")
+    
     section.product
-    	.introduction
-    		.product_detail
-    			h1 #{product.name}
-    			hr.title_line
-    			p
-    				span.detail_title Price: 
+        .introduction
+            .product_detail
+                h1 #{product.name}
+                hr.title_line
+                p
+                    span.detail_title Price: 
                     span.special_content #{product.price}
                 hr
                 p
@@ -34,25 +35,25 @@ block content
                 p
                     span.related Related: 
                     span.related_pdt
-                    	a(href='') Coca Cola No Sugar
+                        a(href='') Coca Cola No Sugar
                         | , 
                         a(href='') Diet Coca Cola
             .images
-            	 #top.top_images(style='left:0px;')
-            	 	img#picture(src=`${product.image}`, alt="product picture")
+                    #top.top_images(style='left:0px;')
+                    img#picture(src=`/uploads/${product.image}`, alt="product picture")
 
-                 #bottom.bottom_images
-                 	img(src=`${product.image}`, alt="product picture")
+                    #bottom.bottom_images
+                    img(src=`${product.image}`, alt="product picture")
                     img(src=`${product.image}`, alt="product picture")
                     img(src=`${product.image}`, alt="product picture")
             .description
-            	header.product_des
-            		h1 Description
-            	table(border='1')
-            		tbody
-            			tr
-            				td
-            					span.product_info Category
+                header.product_des
+                    h1 Description
+                table(border='1')
+                    tbody
+                        tr
+                            td
+                                span.product_info Category
                             td
                                 a(href=`/products/${product.category}`) #{product.category}
                         tr
@@ -68,41 +69,41 @@ block content
                                 span.product_info Ingredients
                             td
                                 ul
-                                	li Carbonated water
+                                    li Carbonated water
                                     li
-                                     | Sugar (sucrose or high-fructose corn syrup (HFCS) depending on country of origin)
+                                        | Sugar (sucrose or high-fructose corn syrup (HFCS) depending on country of origin)
                                     li Caffeine
                                     li Phosphoric acid
                                     li Caramel color
                                     li Natural flavorings
     hr
     section.comment_area
-    	.add_comment
+        .add_comment
         header
-        	h1 Comment
+            h1 Comment
         div
             form
-            	textarea(placeholder='add your comment...')
+                textarea(placeholder='add your comment...')
         .submit
-        	button(type='button') submit
+            button(type='button') submit
         .comment_list
-        	h3 Comment List
+            h3 Comment List
             hr
             .comment
-            	.conmment_details
-            		div(style='float:left;')
-            			span.comment_name Hong Li 
+                .conmment_details
+                    div(style='float:left;')
+                        span.comment_name Hong Li 
                         span 1 hour ago
                     .comment_content
                         | dream taste
             .comment
                 .conmment_details
-                	div(style='float:left;')
-                		span.comment_name Mingyu Su 
+                    div(style='float:left;')
+                        span.comment_name Mingyu Su 
                         span 2 hour ago
                 .comment_content
-                       | dream taste
+                        | dream taste
             .show_more_comment
-            	button show more comments
+                button show more comments
     script(src='image.js')
 
