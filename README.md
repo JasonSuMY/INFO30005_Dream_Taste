@@ -7,38 +7,83 @@
 ## Introduction:
 A web application to present information related to drinks, and everyone can find the drink their dream tastes.
 
-## Implemented Functions:
-- Add product: the user can add product to our database.
-- Search: the user can search product by product name.
-- Log in: the user can log in to our website his/her username and password.
-- Sign up: the user can sign up with an to our website.
-- Browse product by category: the user can browse all the products by category.
-- All products: the user can find out all the products within our database
-- All categories: the user can find out all the availabe categories within our datbase.
-
-
+## Main Functions:
+- **Add product:** A product with an image will be added to the database.
+- **Search:** By typing the query into the search bar embedded in navigation bar, a user is able to find a product by its name, as long as the the product name contains the query input by user.
+- **Log in:** A user can log in to our website his/her username and password.
+- **Sign up:** A user can sign up with an to our website.
+- **Browse product by category:** A user can browse all the products by category.
 
 ## Routes:
-- **Add product:** `/products/addProduct` A product with an image will be added to the database.
+- **Add product:** `/products/addProduct` 
+```
+Example: https://dream-taste.herokuapp.com/addProduct
+```
 
-- **Search:** `/search` By typing the query into the search bar embedded in navigation bar, a user is able to find a product by its name, as long as the the product name contains the query input by user.
+- **Search:** Doesn't have a GET URL. A page will only be displayed after a user input a search query in the search bar.
 
-- **Log in:** `/login` Log in function can be tested using the follwoing test account:
+- **Log in:** `/login` 
+```
+Example: https://dream-taste.herokuapp.com/login
+```
+Log in function can be tested using the follwoing test account:
 ```
 username: test
 password: 123456
 ```
 
-- **Sign up:** `/register` A user can sign up to our website.
-
-- **Browse by category:** `/products/:category` A user is able to view all the products within a category
+- **Sign up:** `/register`
 ```
-Example: "https://dream-taste.herokuapp.com/products/soft%20drink"
+Example: https://dream-taste.herokuapp.com/register
 ```
 
-- **All products:** `/products` All the products will be displayed with a small image and brief introduction to the drink.
+- **Browse by category:** `/products/:category`
 ```
-Example: "https://dream-taste.herokuapp.com/products"
+Example: https://dream-taste.herokuapp.com/products/soft%20drink
 ```
 
-- **All categories:** `/categories` All the categories will be displayed.
+## Reference to source coce:
+All routes related code are written within `route.js`
+- **Add product:**
+  - Views:
+    - default.pug
+    - addProduct.pug
+  - Controllers:
+    - /controllers/products.js
+  - Models:
+    - /models/products.js
+    - /models/categories.js
+- **Search:**
+  - Views:
+    - default.pug
+    - searchResults.pug
+  - Controllers:
+    - /controllers/products.js
+  - Models:
+    - /models/products.js
+- **Log in:**
+  - Views:
+    - default.pug
+    - login.pug
+  - Controllers:
+    - /controllers/users.js
+  - Models:
+    - /models/users.js
+- **Sign up:**
+  - Views:
+    - default.pug
+    - register.pug
+  - Controllers:
+    - /controllers/users.js
+  - Models:
+    - /models/users.js
+- **Browse by category:**
+  - Views: 
+    - categories.pug
+    - products.pug
+  - Controllers:
+    - /controllers/categories.js
+    - /controllers/products.js
+  - Models:
+    - /models/categories.js
+    - /models/producsts.js
