@@ -6,6 +6,8 @@ const path = require('path');
 
 // Used to upload image.
 const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 
 // Initialise storage engine.
 const storage = multer.diskStorage({
@@ -18,8 +20,54 @@ const storage = multer.diskStorage({
 // Initialise upload.
 const upload = multer({
     storage: storage,
-    limits : {fileSize: 1024 * 1024 * 5}
+    limits : {fileSize:  1024 * 1024 * 5},
+    fileFilter: function(req, file, next) {
+        checkFileType(file, next);
+    }
 }).single("productImage");
+
+// Check the type of the files.
+function checkFileType(file, next) {
+    // Allowed file extensions
+    const fileTypes = /jpeg|jpg|png|gif/;
+    
+    // Check the file extensions
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+
+    // Check the mime type
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+        return next(null, true);
+    } else {
+        next("Error: Images only!");
+    }
+}
+
+// Upload the image
+let uploadImage = function(req, res, next) {
+    upload(req, res, function(err) {
+        if (err) {
+            Categories.find(function(cateErr, categories) {
+                if (!cateErr) {
+                    res.render("addProduct", {
+                        title: "Fail to add product",
+                        msg: err,
+                        categories: categories
+                    });
+                } else {
+                    res.render("addProduct", {
+                        title: "Fail to add product",
+                        msg: err + '\n' + cateErr,
+                        categories: categories
+                    });
+                }
+            });
+        } else {
+            next();
+        }
+    });
+};
 
 //Add a new product.
 let addProduct = function(req, res) {
@@ -35,10 +83,24 @@ let addProduct = function(req, res) {
 
     // Save the product to the database.
     newProduct.save(function(err, newProduct){
-        if(!err){
+        if (!err){
             res.redirect('/products');
         }else{
-            res.sendStatus(400);
+            Categories.find(function(cateErr, categories) {
+                if (!cateErr) {
+                    res.render("addProduct", {
+                        title: "Fail to save product",
+                        msg: err,
+                        categories: categories
+                    });
+                } else {
+                    res.render("addProduct", {
+                        title: "Fail to save product",
+                        msg: err + '\n' + cateErr,
+                        categories: categories
+                    });
+                }
+            });
         }
     });
 };
@@ -130,5 +192,5 @@ module.exports.findProductByCategory = findProductByCategory;
 module.exports.displayAddProduct = displayAddProduct;
 module.exports.addProduct = addProduct;
 module.exports.findProductByID = findProductByID;
-module.exports.upload = upload;
+module.exports.uploadImage = uploadImage;
 module.exports.search = search;

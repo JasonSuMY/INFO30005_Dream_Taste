@@ -36,7 +36,7 @@ router.get('/products/:id', products.findProductByID);
 router.get('/addProduct', products.displayAddProduct);
 
 // Add the product the the database.
-router.post('/addProduct', products.upload, products.addProduct);
+router.post('/addProduct', products.uploadImage, products.addProduct);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);
