@@ -52,12 +52,14 @@ let uploadImage = function(req, res, next) {
                 if (!cateErr) {
                     res.render("addProduct", {
                         title: "Fail to add product",
+                        msgType: "ERROR",
                         msg: err,
                         categories: categories
                     });
                 } else {
                     res.render("addProduct", {
                         title: "Fail to add product",
+                        msgType: "ERROR",
                         msg: err + '\n' + cateErr,
                         categories: categories
                     });
@@ -84,18 +86,24 @@ let addProduct = function(req, res) {
     // Save the product to the database.
     newProduct.save(function(err, newProduct){
         if (!err){
-            res.redirect('/products');
+            res.render('product', {
+                msgType: "SUCCESS",
+                msg: "Success! Product added.",
+                product: newProduct
+            });
         }else{
             Categories.find(function(cateErr, categories) {
                 if (!cateErr) {
                     res.render("addProduct", {
                         title: "Fail to save product",
+                        msgType: "ERROR",
                         msg: err,
                         categories: categories
                     });
                 } else {
                     res.render("addProduct", {
                         title: "Fail to save product",
+                        msgType: "ERROR",
                         msg: err + '\n' + cateErr,
                         categories: categories
                     });
