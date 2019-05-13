@@ -9,13 +9,28 @@ const multer = require('multer');
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 
-// Initialise storage engine.
-const storage = multer.diskStorage({
-    destination: './public/uploads/',
+// Set up the cloud storage space for image upload.
+cloudinary.config({
+    cloud_name: "hkdac1yvv",
+    api_key: "155176919271884",
+    api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
+});
+
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "productImages",
     filename: function(req, file, next) {
         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-})
+    } 
+});
+
+// Initialise storage engine.
+// const storage = multer.diskStorage({
+//     destination: './public/uploads/',
+//     filename: function(req, file, next) {
+//         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
 
 // Initialise upload.
 const upload = multer({
@@ -75,7 +90,7 @@ let uploadImage = function(req, res, next) {
 let addProduct = function(req, res) {
     let newProduct = new Products({
         name: req.body.productName.toUpperCase(),
-        image: req.file.filename,
+        image: req.file.url,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,

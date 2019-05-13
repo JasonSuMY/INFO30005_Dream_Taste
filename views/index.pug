@@ -7,7 +7,7 @@ block content
         .row
             each product in products
                 div(class="col-md-3 card")
-                    img(class="card-img-top", src=`/uploads/${product.image}`, alt="Drink image")
+                    img(class="card-img-top", src=`${product.image}`, alt="Drink image")
                     .card-body
                         h4.card-title #{product.name}
                         p.card-text #{product.description}
