@@ -5,7 +5,8 @@ block content
 
     .container-fluid
         .row
-            div(id="addProduct", class='col-md-3')
+            div(id="addProduct", class='col-md-3 card')
+                img(src="/images/addpic.png", style="width:100%")
                 a(href="/addProduct") Add Product
             each product in products
                 div(class="col-md-3 card")
