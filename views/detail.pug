@@ -2,50 +2,50 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/detail.css")
-    
     section.product
         .introduction
             .product_detail
                 h1 #{product.name}
                 hr.title_line
-                p
-                    span.detail_title Price: 
-                    span.special_content #{product.price}
-                hr
-                p
-                    span.detail_title Score: 
-                    span.special_content #{product.rating}
-                hr
-                p
-                    span.detail_title Energy: 
-                    span.content 180 KJ (per 100mL)
-                hr
-                p
-                    span.detail_title Protein: 
-                    span.content 0 g
-                hr
-                p
-                    span.detail_title Fat: 
-                    span.content 0 g
-                hr
-                p
-                    span.detail_title Sugar: 
-                    span.content 10.6 g (per 100mL)
-                hr
-                p
-                    span.related Related: 
-                    span.related_pdt
-                        a(href='') Coca Cola No Sugar
-                        | , 
-                        a(href='') Diet Coca Cola
+                .details
+                    p
+                        span.detail_title Price: 
+                        span.special_content #{product.price}
+                    hr
+                    p
+                        span.detail_title Score: 
+                        span.special_content #{product.rating}
+                    hr
+                    p
+                        span.detail_title Energy: 
+                        span.content 180 KJ (per 100mL)
+                    hr
+                    p
+                        span.detail_title Protein: 
+                        span.content 0 g
+                    hr
+                    p
+                        span.detail_title Fat: 
+                        span.content 0 g
+                    hr
+                    p
+                        span.detail_title Sugar: 
+                        span.content 10.6 g (per 100mL)
+                    hr
+                    p
+                        span.related Related: 
+                        span.related_pdt
+                            a(href='') Coca Cola No Sugar
+                            | , 
+                            a(href='') Diet Coca Cola
             .images
-                    #top.top_images(style='left:0px;')
+                 #top.top_images(style='left:0px;')
                     img#picture(src=`/uploads/${product.image}`, alt="product picture")
 
-                    #bottom.bottom_images
-                    img(src=`${product.image}`, alt="product picture")
-                    img(src=`${product.image}`, alt="product picture")
-                    img(src=`${product.image}`, alt="product picture")
+                 #bottom.bottom_images
+                    img(src=`/uploads/${product.image}`, alt="product picture")
+                    img(src=`/uploads/${product.image}`, alt="product picture")
+                    img(src=`/uploads/${product.image}`, alt="product picture")
             .description
                 header.product_des
                     h1 Description
@@ -71,7 +71,7 @@ block content
                                 ul
                                     li Carbonated water
                                     li
-                                        | Sugar (sucrose or high-fructose corn syrup (HFCS) depending on country of origin)
+                                     | Sugar (sucrose or high-fructose corn syrup (HFCS) depending on country of origin)
                                     li Caffeine
                                     li Phosphoric acid
                                     li Caramel color
@@ -79,11 +79,10 @@ block content
     hr
     section.comment_area
         .add_comment
-        header
             h1 Comment
-        div
-            form
-                textarea(placeholder='add your comment...')
+            div
+                form
+                    textarea(placeholder='add your comment...')
         .submit
             button(type='button') submit
         .comment_list
@@ -91,19 +90,19 @@ block content
             hr
             .comment
                 .conmment_details
-                    div(style='float:left;')
+                    div
                         span.comment_name Hong Li 
-                        span 1 hour ago
+                        span.comment_time 10/05/2019
                     .comment_content
                         | dream taste
             .comment
                 .conmment_details
-                    div(style='float:left;')
+                    div
                         span.comment_name Mingyu Su 
-                        span 2 hour ago
+                        span.comment_time 10/05/2019
                 .comment_content
-                        | dream taste
+                       | dream taste
             .show_more_comment
                 button show more comments
-    script(src='image.js')
+    script(src='/javascripts/image.js')
 

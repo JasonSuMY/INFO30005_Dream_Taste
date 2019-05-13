@@ -161,7 +161,7 @@ let findProductByID = function(req, res) {
     const id = req.params.id;
     Products.findById(id, function(err, product) {
         if (!err) {
-            res.render("product", {
+            res.render("detail", {
                 title: product.name,
                 product: product
             })

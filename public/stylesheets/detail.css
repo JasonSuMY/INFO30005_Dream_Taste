@@ -1,21 +1,8 @@
-html {
-	margin: 0;
-	padding: 0;
-	}
-body { 
-	font: 75% arial, sans-serif;
-	line-height: 1.88889;
-	color: #555753; 
-	background: #FDE6C4 no-repeat bottom right; 
-	margin: 0; 
-	padding: 0;
-	}
 
 
 /*style of product details*/
 
 .product{
-	padding-top:100px;
 	padding-bottom: 100px;
     width:1000px;
     height:1000px;
@@ -29,61 +16,74 @@ body {
 
 .product_detail{
     position: absolute;
-	width:500px;
+	width:550px;
     top:125px;
-	left:450px;
+	left:445px;
+    border:2px solid #FDBB58;
+    border-radius: 10px;
 }
 
 .product_detail h1{
+	font-family: segoe print;
+	padding-top:10px;
 	font-size:30px;
 	text-align: center;
 }
 
-.product_detail hr{
-	border: 1px dashed grey;
+.title_line {
+    border-top:2px solid #FDBB58;
+}
+
+.details hr{
+	border-top: 1px dotted #FDBB58;
 }
 
 .detail_title{
+    padding-left:5px;
 	font-weight: bold;
 	font-size:20px;
 }
 
 .special_content{
+    padding: 5px;
 	font-weight: bold;
-	font-size:25px;
-	color:#FF6633;
+	font-size: 25px;
+	color: #FF6633;
 }
 
 .content{
+    padding-left: 5px;
 	font-weight: bold;
-	font-size:20px;
+	font-size: 20px;
 }
 
 .related{
+    padding-left: 5px;
 	font-weight: bold;
-	font-size:15px;
+	font-size: 15px;
 }
 
 .related_pdt{
-	font-size:15px;
+    padding-left: 5px;
+	font-size: 15px;
 }
 
 .images{
 	position: relative;
-	width:372px;
-	top:160px;
+	width: 372px;
+	top: 125px;
 	overflow: hidden;
 }
 
 .images .top_images{
-	width:370px;
-	height:370px;
+	width: 370px;
+	height: 370px;
 }
 
 .images .top_images img{
-	float:left;
-	width:370px;
-	height:370px;
+	float: left;
+	width: 370px;
+	height: 370px;
 	padding: 1px;
     background: black;
 }
@@ -99,7 +99,7 @@ body {
 }
 
 .on{
-	border:1px solid green;
+	border:1px solid #FDBB58;
 }
 
 .description{
@@ -110,6 +110,7 @@ body {
 .product_des h1{
 	padding-left:3px;
 	background: #DDDDDD;
+	font-size:25px;
 }
 
 .description table{
@@ -169,6 +170,10 @@ body {
 
 }
 
+.comment_time{
+    float:right;
+}
+
 .comment_content {
     clear:both;
     margin:5px 50px;
@@ -190,8 +195,8 @@ body {
 	height:40px;
 	border-radius: 5px;
 	border: 1px solid grey;
-	background: #FDE6C4;
-	color:grey;
+	background: #FDBB58;
+	color:black;
 }
 
 .comment_area{
