@@ -2,11 +2,18 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/register.css")
-
-    div(class = "register-page")
-        div(class = "form")
-            form(id="register-form", method="POST")
-                input(required type="text", name="username", placeholder="username")
-                input(required type="password", name="password", placeholder="password")
-                input(required type="text", name="email", placeholder="email")
-                button(type="submit") Register
+    form(action='#0', method="POST")
+        div
+            input#username(type='text', name='username', required='', placeholder=' ')
+            label(for='username')  UserName
+        div
+            input#email(type='email', name='email', required='', placeholder=' ')
+            label(for='email') Email Address
+            .requirements
+                | Must be a valid email address.
+        div
+            input#password(type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
+            label(for='password') Password
+            .requirements
+                | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+        input(type='submit', value='Sign Up')
