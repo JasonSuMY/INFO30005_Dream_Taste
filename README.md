@@ -29,7 +29,7 @@ Example: https://dream-taste.herokuapp.com/login
 Log in function can be tested using the follwoing test account:
 ```
 username: test
-password: 123456
+password: Test1234
 ```
 
 - **Sign up:** `/register`
