@@ -16,6 +16,7 @@ cloudinary.config({
     api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
 });
 
+// Initialise storage engine.
 const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "productImages",
@@ -23,14 +24,6 @@ const storage = cloudinaryStorage({
         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     } 
 });
-
-// Initialise storage engine.
-// const storage = multer.diskStorage({
-//     destination: './public/uploads/',
-//     filename: function(req, file, next) {
-//         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-//     }
-// });
 
 // Initialise upload.
 const upload = multer({
