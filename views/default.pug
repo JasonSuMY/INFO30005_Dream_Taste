@@ -36,6 +36,17 @@ html
                         form(class="form-inline ", action="/search", method="POST")
                             input(type="text", name="search", id="search", class="form-control mr-md-2", placeholder="Search")
                             button(type="submit", class="btn btn-warning") Search
+
+        block message
+            #msgType
+            if msgType == "ERROR"
+                div(class="alert alert-danger alert-dismissible")
+                    button(type="button", class="close", data-dismiss="alert") &times;
+                    h4 #{msg}
+            else if msgType == "SUCCESS"
+                div(class="alert alert-success alert-dismissible")
+                    button(type="button", class="close", data-dismiss="alert") &times;
+                    h4 #{msg}
                 
         block content
 

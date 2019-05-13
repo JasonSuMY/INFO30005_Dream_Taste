@@ -1,40 +1,89 @@
 # INFO30005_Dream_Taste
-Group: Matrix
 
-Group Members: Zhu Yuan, Ju Shang, Mingyu Su, Hong Li
+## Group: Matrix
 
-A web application to present information related to drinks
+## Group Members: Zhu Yuan, Ju Shang, Mingyu Su, Hong Li
 
-Implemented Functions:
--Log in: the user can log in to our website his/her username and password.
--Add product: the user can add product to our database.
--Browse product by category: the user can browse all the products by category.
--All products: the user can find out all the products within our database
--All categories: the user can find out all the availabe categories within our
-                 datbase.
+## Introduction:
+A web application to present information related to drinks, and everyone can find the drink their dream tastes.
 
-Routes (Method-"URL"):
--Log in: POST-"/logIn"
-        log in function can be tested using a sample account in the format of 
-        JSON:
-        {
-            "username": "mingyu",
-            "password": "12345678"
-        }
--Add product: POST-"/products/addProduct"
-        to add a product, a certain format should be followed, and it needs to
-        be a JSON file:
-            {
-                "name": "drink name",
-                "price": "drink price",
-                "description": "A short description of the drink.",
-                "category": "The category of the dinrk.",
-            }
-        the category needs to be existed in our database in order to add tihs
-        product.
--Browse by category: GET-"/products/:category"
-        Example: "https://dream-taste.herokuapp.com/products/soft%20drink"
--All products: GET-"/products"
-        Example: "https://dream-taste.herokuapp.com/products"
--All categories: GET-"/categories"
-        Example: "https://dream-taste.herokuapp.com/categories"
+## Main Functions:
+- **Add product:** A product with an image will be added to the database.
+- **Search:** By typing the query into the search bar embedded in navigation bar, a user is able to find a product by its name, as long as the the product name contains the query input by user.
+- **Log in:** A user can log in to our website his/her username and password.
+- **Sign up:** A user can sign up with an to our website.
+- **Browse product by category:** A user can browse all the products by category.
+
+## Routes:
+- **Add product:** `/products/addProduct` 
+```
+Example: https://dream-taste.herokuapp.com/addProduct
+```
+
+- **Search:** Doesn't have a GET URL. A page will only be displayed after a user input a search query in the search bar.
+
+- **Log in:** `/login` 
+```
+Example: https://dream-taste.herokuapp.com/login
+```
+Log in function can be tested using the follwoing test account:
+```
+username: test
+password: 123456
+```
+
+- **Sign up:** `/register`
+```
+Example: https://dream-taste.herokuapp.com/register
+```
+
+- **Browse by category:** `/products/:category`
+```
+Example: https://dream-taste.herokuapp.com/products/soft%20drink
+```
+
+## Reference to source coce:
+All routes related code are written within `route.js`
+- **Add product:**
+  - Views:
+    - default.pug
+    - addProduct.pug
+  - Controllers:
+    - /controllers/products.js
+  - Models:
+    - /models/products.js
+    - /models/categories.js
+- **Search:**
+  - Views:
+    - default.pug
+    - searchResults.pug
+  - Controllers:
+    - /controllers/products.js
+  - Models:
+    - /models/products.js
+- **Log in:**
+  - Views:
+    - default.pug
+    - login.pug
+  - Controllers:
+    - /controllers/users.js
+  - Models:
+    - /models/users.js
+- **Sign up:**
+  - Views:
+    - default.pug
+    - register.pug
+  - Controllers:
+    - /controllers/users.js
+  - Models:
+    - /models/users.js
+- **Browse by category:**
+  - Views: 
+    - categories.pug
+    - products.pug
+  - Controllers:
+    - /controllers/categories.js
+    - /controllers/products.js
+  - Models:
+    - /models/categories.js
+    - /models/producsts.js

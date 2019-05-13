@@ -18,10 +18,10 @@ router.get('/login', users.login);
 router.post('/login', users.validateLogin);
 
 // Display the register page.
-router.get('/register', users.register);
+router.get('/register', users.displayRegister);
 
 // Validate the registration information.
-
+router.post('/register', users.register);
 
 // Display all the products.
 router.get('/products', products.allProducts);
@@ -36,7 +36,7 @@ router.get('/products/:id', products.findProductByID);
 router.get('/addProduct', products.displayAddProduct);
 
 // Add the product the the database.
-router.post('/addProduct', products.upload, products.addProduct);
+router.post('/addProduct', products.uploadImage, products.addProduct);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);

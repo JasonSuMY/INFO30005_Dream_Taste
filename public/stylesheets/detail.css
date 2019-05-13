@@ -1,0 +1,206 @@
+
+
+/*style of product details*/
+
+.product{
+	padding-bottom: 100px;
+    width:1000px;
+    height:1000px;
+    margin:0 auto;
+}
+
+.introduction{
+	position:relative;
+	
+}
+
+.product_detail{
+    position: absolute;
+	width:550px;
+    top:125px;
+	left:445px;
+    border:2px solid #FDBB58;
+    border-radius: 10px;
+}
+
+.product_detail h1{
+	font-family: segoe print;
+	padding-top:10px;
+	font-size:30px;
+	text-align: center;
+}
+
+.title_line {
+    border-top:2px solid #FDBB58;
+}
+
+.details hr{
+	border-top: 1px dotted #FDBB58;
+}
+
+.detail_title{
+    padding-left:5px;
+	font-weight: bold;
+	font-size:20px;
+}
+
+.special_content{
+    padding: 5px;
+	font-weight: bold;
+	font-size: 25px;
+	color: #FF6633;
+}
+
+.content{
+    padding-left: 5px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.related{
+    padding-left: 5px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.related_pdt{
+    padding-left: 5px;
+	font-size: 15px;
+}
+
+.images{
+	position: relative;
+	width: 372px;
+	top: 125px;
+	overflow: hidden;
+}
+
+.images .top_images{
+	width: 370px;
+	height: 370px;
+}
+
+.images .top_images img{
+	float: left;
+	width: 370px;
+	height: 370px;
+	padding: 1px;
+    background: black;
+}
+
+.images .bottom_images{
+	width:380px;
+	padding-top:10px;
+}
+
+.images .bottom_images img{
+	width:120px;
+	height:120px;
+}
+
+.on{
+	border:1px solid #FDBB58;
+}
+
+.description{
+	position: absolute;
+	top:700px;
+}
+
+.product_des h1{
+	padding-left:3px;
+	background: #DDDDDD;
+	font-size:25px;
+}
+
+.description table{
+	font-size:15px;
+	width:1000px;
+}
+
+.description td{
+	padding-left:3px;
+
+}
+
+.description li{
+	font-size:15px;
+	margin-right: 5px;
+}
+
+.product_info{
+	font-weight: bold;
+	font-size:15px;
+}
+
+
+/*style about comment area*/
+
+.add_comment h1{
+	float:left;
+	font-size:20px;
+}
+
+.add_comment textarea{
+	width:1000px;
+	height:100px;
+	font-size:15px;
+	font-family: arial;
+}
+
+.submit{
+	padding-top:10px;
+	float:right;
+}
+
+.submit button{
+    width: 100px;
+    height: 30px;
+    font-size:15px;
+    font-family: arial;
+    letter-spacing:2px;
+    padding-right: 12px;
+    border-radius: 5px;
+    background: #FDBB58;
+    margin:0 auto;
+}
+
+.comment_list {
+    padding-top:50px;
+
+}
+
+.comment_time{
+    float:right;
+}
+
+.comment_content {
+    clear:both;
+    margin:5px 50px;
+    font-size:16px;
+}
+
+
+.show_more_comment {   
+    text-align: center;
+    font-size:20px;
+    line-height: 40px;
+    margin-bottom: 40px;
+}
+
+.show_more_comment button{
+	font-size:20px;
+	padding-left:10px;
+	width:400px;
+	height:40px;
+	border-radius: 5px;
+	border: 1px solid grey;
+	background: #FDBB58;
+	color:black;
+}
+
+.comment_area{
+	padding-top:0px;
+    width:1000px;
+    margin:0 auto;
+}

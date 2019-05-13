@@ -6,26 +6,91 @@ const path = require('path');
 
 // Used to upload image.
 const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 
-// Initialise storage engine.
-const storage = multer.diskStorage({
-    destination: './public/uploads/',
+// Set up the cloud storage space for image upload.
+cloudinary.config({
+    cloud_name: "hkdac1yvv",
+    api_key: "155176919271884",
+    api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
+});
+
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "productImages",
     filename: function(req, file, next) {
         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-})
+    } 
+});
+
+// Initialise storage engine.
+// const storage = multer.diskStorage({
+//     destination: './public/uploads/',
+//     filename: function(req, file, next) {
+//         next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
 
 // Initialise upload.
 const upload = multer({
     storage: storage,
-    limits : {fileSize: 1024 * 1024 * 5}
+    limits : {fileSize:  1024 * 1024 * 5},
+    fileFilter: function(req, file, next) {
+        checkFileType(file, next);
+    }
 }).single("productImage");
+
+// Check the type of the files.
+function checkFileType(file, next) {
+    // Allowed file extensions
+    const fileTypes = /jpeg|jpg|png|gif/;
+    
+    // Check the file extensions
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+
+    // Check the mime type
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+        return next(null, true);
+    } else {
+        next("Error: Images only!");
+    }
+}
+
+// Upload the image
+let uploadImage = function(req, res, next) {
+    upload(req, res, function(err) {
+        if (err) {
+            Categories.find(function(cateErr, categories) {
+                if (!cateErr) {
+                    res.render("addProduct", {
+                        title: "Fail to add product",
+                        msgType: "ERROR",
+                        msg: err,
+                        categories: categories
+                    });
+                } else {
+                    res.render("addProduct", {
+                        title: "Fail to add product",
+                        msgType: "ERROR",
+                        msg: err + '\n' + cateErr,
+                        categories: categories
+                    });
+                }
+            });
+        } else {
+            next();
+        }
+    });
+};
 
 //Add a new product.
 let addProduct = function(req, res) {
     let newProduct = new Products({
         name: req.body.productName.toUpperCase(),
-        image: req.file.filename,
+        image: req.file.url,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
@@ -35,10 +100,30 @@ let addProduct = function(req, res) {
 
     // Save the product to the database.
     newProduct.save(function(err, newProduct){
-        if(!err){
-            res.redirect('/products');
+        if (!err){
+            res.render('product', {
+                msgType: "SUCCESS",
+                msg: "Success! Product added.",
+                product: newProduct
+            });
         }else{
-            res.sendStatus(400);
+            Categories.find(function(cateErr, categories) {
+                if (!cateErr) {
+                    res.render("addProduct", {
+                        title: "Fail to save product",
+                        msgType: "ERROR",
+                        msg: err,
+                        categories: categories
+                    });
+                } else {
+                    res.render("addProduct", {
+                        title: "Fail to save product",
+                        msgType: "ERROR",
+                        msg: err + '\n' + cateErr,
+                        categories: categories
+                    });
+                }
+            });
         }
     });
 };
@@ -91,7 +176,7 @@ let findProductByID = function(req, res) {
     const id = req.params.id;
     Products.findById(id, function(err, product) {
         if (!err) {
-            res.render("product", {
+            res.render("detail", {
                 title: product.name,
                 product: product
             })
@@ -130,5 +215,5 @@ module.exports.findProductByCategory = findProductByCategory;
 module.exports.displayAddProduct = displayAddProduct;
 module.exports.addProduct = addProduct;
 module.exports.findProductByID = findProductByID;
-module.exports.upload = upload;
+module.exports.uploadImage = uploadImage;
 module.exports.search = search;

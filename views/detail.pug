@@ -1,0 +1,108 @@
+extends default
+
+block content
+    link(rel="stylesheet", href="/stylesheets/detail.css")
+    section.product
+        .introduction
+            .product_detail
+                h1 #{product.name}
+                hr.title_line
+                .details
+                    p
+                        span.detail_title Price: 
+                        span.special_content #{product.price}
+                    hr
+                    p
+                        span.detail_title Score: 
+                        span.special_content #{product.rating}
+                    hr
+                    p
+                        span.detail_title Energy: 
+                        span.content 180 KJ (per 100mL)
+                    hr
+                    p
+                        span.detail_title Protein: 
+                        span.content 0 g
+                    hr
+                    p
+                        span.detail_title Fat: 
+                        span.content 0 g
+                    hr
+                    p
+                        span.detail_title Sugar: 
+                        span.content 10.6 g (per 100mL)
+                    hr
+                    p
+                        span.related Related: 
+                        span.related_pdt
+                            a(href='') Coca Cola No Sugar
+                            | , 
+                            a(href='') Diet Coca Cola
+            .images
+                 #top.top_images(style='left:0px;')
+                    img#picture(src=`${product.image}`, alt="product picture")
+
+                 #bottom.bottom_images
+                    img(src=`${product.image}`, alt="product picture")
+                    img(src=`${product.image}`, alt="product picture")
+                    img(src=`${product.image}`, alt="product picture")
+            .description
+                header.product_des
+                    h1 Description
+                table(border='1')
+                    tbody
+                        tr
+                            td
+                                span.product_info Category
+                            td
+                                a(href=`/products/${product.category}`) #{product.category}
+                        tr
+                            td
+                                span.product_info Manufacturer
+                            td The Coca-Cola Company
+                        tr
+                            td
+                                span.product_info Country of origin
+                            td United States
+                        tr
+                            td
+                                span.product_info Ingredients
+                            td
+                                ul
+                                    li Carbonated water
+                                    li
+                                     | Sugar (sucrose or high-fructose corn syrup (HFCS) depending on country of origin)
+                                    li Caffeine
+                                    li Phosphoric acid
+                                    li Caramel color
+                                    li Natural flavorings
+    hr
+    section.comment_area
+        .add_comment
+            h1 Comment
+            div
+                form
+                    textarea(placeholder='add your comment...')
+        .submit
+            button(type='button') submit
+        .comment_list
+            h3 Comment List
+            hr
+            .comment
+                .conmment_details
+                    div
+                        span.comment_name Hong Li 
+                        span.comment_time 10/05/2019
+                    .comment_content
+                        | dream taste
+            .comment
+                .conmment_details
+                    div
+                        span.comment_name Mingyu Su 
+                        span.comment_time 10/05/2019
+                .comment_content
+                       | dream taste
+            .show_more_comment
+                button show more comments
+    script(src='/javascripts/image.js')
+
