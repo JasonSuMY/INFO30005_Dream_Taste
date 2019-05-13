@@ -4,8 +4,11 @@ block content
 
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
 
-    div(class="container-fluid container-box")
+    div(class="container-fluid container-box text-center")
         h2 #{title}
             each product in products
-                .row
-                    a(href=`/products/${product.id}`, class="text-secondary") #{product.name}
+                div(class="col-md-3 card")
+                    img(class="card-img-top", src=`${product.image}`, alt="Drink image")
+                    .card-body
+                        h4.card-title #{product.name}
+                        a(href=`/products/${product.id}`, class="btn btn-waring streched-link") More Detail
