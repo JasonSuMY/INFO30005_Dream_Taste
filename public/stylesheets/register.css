@@ -1,50 +1,94 @@
-.register-page{
-    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(../images/pic1.jpg);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    height: 600px;
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
+form {
+    max-width: 450px;
+    margin: 0 auto;
 }
-
-.form{
+form > div {
     position: relative;
-    top: 100px;
-    z-index: 1;
-    background: #ffffff;
-    max-width: 360px;
-    padding: 45px;
-    margin: auto;
-    text-align: center;
+    background: white;
+    border-bottom: 1px solid #ccc;
 }
-
-.form input{
-    font-family:"Roboto", sans-serif ;
-    outline: 1;
-    background: #f2f2f2;
+form > div > label {
+    opacity: 0.3;
+    font-weight: bold;
+    position: absolute;
+    top: 22px;
+    left: 20px;
+}
+form > div > input[type="text"],
+form > div > input[type="email"],
+form > div > input[type="password"] {
     width: 100%;
     border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
+    padding: 20px 20px 20px 50px;
+    background: #eee;
 }
-
-.form button{
-    font-family:"Roboto", sans-serif ;
+form > div > input[type="text"]:focus,
+form > div > input[type="email"]:focus,
+form > div > input[type="password"]:focus {
     outline: 0;
-    background: #FDBB58;
+    background: white;
+}
+form > div > input[type="text"]:focus + label,
+form > div > input[type="email"]:focus + label,
+form > div > input[type="password"]:focus + label {
+    opacity: 0;
+}
+form > div > input[type="text"]:valid,
+form > div > input[type="email"]:valid,
+form > div > input[type="password"]:valid {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 20px 20px;
+}
+form > div > input[type="text"]:valid + label,
+form > div > input[type="email"]:valid + label,
+form > div > input[type="password"]:valid + label {
+    opacity: 0;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
+form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
+    background: pink;
+}
+form > div > input[type="text"]:invalid:not(:focus):not(:placeholder-shown) + label,
+form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown) + label,
+form > div > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) + label {
+    opacity: 0;
+}
+form > div > input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
+form > div > input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements {
+    max-height: 200px;
+    padding: 0 30px 20px 50px;
+}
+form > div .requirements {
+    padding: 0 30px 0 50px;
+    color: #999;
+    max-height: 0;
+    transition: 0.28s;
+    overflow: hidden;
+    color: red;
+    font-style: italic;
+}
+form input[type="submit"] {
+    display: block;
     width: 100%;
+    margin: 20px 0;
+    background: #41D873;
+    color: white;
     border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor:pointer;
+    padding: 20px;
+    font-size: 1.2rem;
 }
 
-.form button:hover {
-    background: rgb(255, 200, 117);
+body {
+    background: #333;
+    font-family: 'PT Sans', sans-serif;
+    padding: 20px;
 }
 
-.form .login-form{
-    display:none;
+* {
+    box-sizing: border-box;
 }
