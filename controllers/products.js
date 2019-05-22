@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Products = mongoose.model('Products');
 const Categories = mongoose.model('Categories');
-const express = require('express');
 const path = require('path');
 
 // Used to upload image.
@@ -167,15 +166,18 @@ let displayAddProduct = function(req, res) {
 // Find a product by its ID.
 let findProductByID = function(req, res) {
     const id = req.params.id;
-    Products.findById(id, function(err, product) {
-        if (!err) {
-            res.render("detail", {
-                title: product.name,
-                product: product
-            })
-        } else {
-            res.sendStatus(404);
-        }
+    Products.findById(id).
+        populate('comments').
+        exec(function(err, product) {
+            if (!err) {
+                res.render("productDetail", {
+                    title: product.name,
+                    product: product,
+                    comments: product.comments
+                });
+            } else {
+                res.sendStatus(404);
+            }
     });
 };
 

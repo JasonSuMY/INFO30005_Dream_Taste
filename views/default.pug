@@ -34,8 +34,10 @@ html
                                 a(class="nav-link", href="#Contact-Us") Contact Us
                     .col-md-3
                         form(class="form-inline ", action="/search", method="POST")
-                            input(type="text", name="search", id="search", class="form-control mr-md-2", placeholder="Search")
-                            button(type="submit", class="btn btn-warning") Search
+                            .input-group
+                                input(type="text", name="search", id="search", class="form-control", placeholder="Search")
+                                .input-group-append
+                                    button(type="submit", class="btn btn-warning") Search
 
         block message
             #msgType

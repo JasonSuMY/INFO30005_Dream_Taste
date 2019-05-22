@@ -5,6 +5,7 @@ const controllers = require('../controllers/controllers.js');
 const products = require('../controllers/products.js');
 const users = require('../controllers/users.js');
 const categories = require('../controllers/categories.js');
+const comments = require('../controllers/comments.js');
 
 
 
@@ -43,5 +44,8 @@ router.get('/categories', categories.allCategories);
 
 // Display the search results based on the user's query.
 router.post('/search', products.search);
+
+// Add comment to the product.
+router.post('/addComment/:id', comments.addComment);
 
 module.exports = router;

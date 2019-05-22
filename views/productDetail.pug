@@ -1,0 +1,44 @@
+extends default
+
+block content
+    link(rel="stylesheet", href="/stylesheets/containerBox.css")
+
+    div(class = "container-fluid container-box")
+        .row
+            div(class = "col-md-4 card")
+                img(class="card-img-top", src=`${product.image}`)
+
+            div(class = "col-md-8 card")
+                h1(class = "card-title text-center") #{product.name}
+                p(class = "card-text") Description: #{product.description}
+
+        .row
+            h1(class = "col-md-12 text-center") Comments
+
+            each comment in comments
+                div(class = "col-md-4 card")
+                    h4(class = "card-title") #{comment.title}
+                    p(class = "card-text") #{comment.body}
+
+        .row
+            button(class="col-md-12 btn btn-warning text-center my-2", data-toggle="modal", data-target="#addComment") Add Comment
+
+            div(class="modal fade", id="addComment")
+                div(class="modal-dialog modal-dialog-centered")
+                    div(class="modal-content")
+                        div(class="modal-header")
+                            h4(class="modal-title") Comment
+                            button(type="button", class="close", data-dismiss="modal") &times;
+                        
+                        div(class="modal-body")
+                            form(method="POST", action=`/addComment/${product._id}`)
+                                .form-group
+                                    label(for="title") Title
+                                    input(type="text", class="form-control", name="title", placeholder="Comment Title")
+                                .form-group
+                                    label(for="body") Content
+                                    textarea(class="form-control", rows=5, name="body", placeholder="Write comment..")
+                                button(type="submit", class="btn btn-warning") Post
+
+                        div(class="modal-footer")
+                            button(type="button", class="btn btn-danger" data-dismiss="modal") Close
