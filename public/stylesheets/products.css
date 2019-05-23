@@ -11,6 +11,48 @@
     border-radius: 5px;
 }
 
-#addProduct:hover {
+#image:hover {
     background-color: rgb(201, 201, 201)
+}
+
+#products{
+	width:90%;
+	margin:0 auto;
+}
+
+.add {
+ 
+  width: 200px;
+  height: 200px;
+  color: #ccc;
+  transition: color .25s;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.add::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  margin-left: -100px;
+  margin-top: -10px;
+  border-top: 20px solid;
+}
+
+.add::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 200px;
+  margin-left: -10px;
+  margin-top: -100px;
+  border-left: 20px solid;
+}
+
+.add:hover {
+  color: gold;
 }
