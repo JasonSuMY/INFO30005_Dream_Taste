@@ -5,7 +5,9 @@ block content
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
 
     div(class="container-fluid container-box text-center")
-        h2 #{title}
+        div(class="row my-3") 
+            h3(class="ml-3") #{title}
+        .row
             each product in products
                 div(class="col-md-3 card")
                     img(class="card-img-top", src=`${product.image}`, alt="Drink image")
