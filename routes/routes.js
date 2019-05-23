@@ -48,4 +48,7 @@ router.post('/search', products.search);
 // Add comment to the product.
 router.post('/addComment/:id', comments.addComment);
 
+// Add rating to the product.
+router.post('/addRating/:id', products.addRating);
+
 module.exports = router;

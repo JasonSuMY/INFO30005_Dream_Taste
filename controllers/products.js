@@ -205,6 +205,38 @@ let search = function(req, res) {
     }); 
 };
 
+let addRating = function(req, res) {
+    const id = req.params.id;
+
+    Products.findById(id, function(err, product) {
+        if (!err) {
+            if (product == null) {
+                res.send("Product not found");
+            } else {
+                const numOfRatings = product.numOfRatings;
+                product.numOfRatings = numOfRatings + 1;
+
+                const rating = product.rating;
+                const postedRating = parseInt(req.body.rating);
+                
+                const newRating = (rating * numOfRatings + postedRating) / product.numOfRatings;
+
+                product.rating = newRating;             
+
+                product.save(function(err) {
+                    if (!err) {
+                        res.redirect(`/products/${product._id}`);
+                    } else {
+                        res.send("ERROR: Saving the product with new rating");
+                    }
+                });
+            }
+        } else {    
+            res.send("ERROR: Finding the product");
+        }
+    });
+}
+
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
 module.exports.displayAddProduct = displayAddProduct;
@@ -212,3 +244,4 @@ module.exports.addProduct = addProduct;
 module.exports.findProductByID = findProductByID;
 module.exports.uploadImage = uploadImage;
 module.exports.search = search;
+module.exports.addRating = addRating;

@@ -8,7 +8,8 @@ const ProductSchema = new Schema(
         price: String,
         description: String,
         category: {type: String, required: [true, "Category must be selected"]},
-        rating: {type: Number, default: 0, min: 0, max: 10},
+        rating: {type: Number, default: 0, min: 0, max: 5},
+        numOfRatings: {type: Number, default: 0},
         comments: [{type: Schema.Types.ObjectId, ref: "Comments"}]
     }
 );

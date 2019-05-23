@@ -33,7 +33,6 @@ window.onload = function(){
       elem.appendChild(frag);
     }
         
-        //主体函数
     function star(num){
       var n = num||5;
       var clickStar=curentStar=0;
@@ -48,7 +47,7 @@ window.onload = function(){
         if(getIndex(event)){
           var index = getIndex(event);
           change(index);
-          showInfo(index,msg);
+          showInfo(index, msg);
         }
       }
           

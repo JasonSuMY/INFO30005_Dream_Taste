@@ -2,15 +2,39 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
+    link(rel="stylesheet", href="/stylesheets/productDetail.css")
+    script(src="/javascripts/rate.js")
 
     div(class = "container-fluid container-box")
         .row
-            div(class = "col-md-4 card")
+            div(class="col-md-4 card")
                 img(class="card-img-top", src=`${product.image}`)
 
-            div(class = "col-md-8 card")
+            div(class="col-md-6 card")
                 h1(class = "card-title text-center") #{product.name}
                 p(class = "card-text") Description: #{product.description}
+
+                //- #star
+                //-     span Rate:
+                //-     #star-div
+                //-     span#star-span
+                //-     p#star-info
+
+            div(class="col-md-2")
+                h3 Score: #{product.rating}
+                form(method="POST", action=`/addRating/${product._id}`)
+                    div(class="rating")
+                        input(type="radio" id="star5" name="rating" value="5")
+                        label(for="star5" title="Excellent") 5 stars
+                        input(type="radio" id="star4" name="rating" value="4")
+                        label(for="star4" title="Good") 4 stars
+                        input(type="radio" id="star3" name="rating" value="3")
+                        label(for="star3" title="Normal") 3 stars
+                        input(type="radio" id="star2" name="rating" value="2")
+                        label(for="star2" title="Under Average") 2 stars
+                        input(type="radio" id="star1" name="rating" value="1")
+                        label(for="star1" title="Disappointing") 1 star
+                    button(type="submit", class="btn btn-warning") Rate                  
 
         .row
             h1(class = "col-md-12 text-center") Comments
