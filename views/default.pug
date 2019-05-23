@@ -15,10 +15,17 @@ html
                 .row
                     .col-md-10
                         img(src="/images/logo03.png", alt="logo", id="logo")
-                    .col-md-1
-                        a(href='/login', class="btn btn-warning", id="login", role="button") Log In
-                    .col-md-1
-                        a(href='/register', class="btn btn-warning", id="register", role="button") Register
+                    
+                    if authenticated
+                        .col-md-1
+                            a(href='/profile', class="btn btn-warning", role="button") Profile
+                        .col-md-1
+                            a(href='/logout', class="btn btn-warning", role="button") Logout
+                    else
+                        .col-md-1
+                            a(href='/login', class="btn btn-warning", id="login", role="button") Login
+                        .col-md-1
+                            a(href='/register', class="btn btn-warning", id="register", role="button") Register
                 nav(class="row navbar navbar-expand-sm")
                     .col-md-9
                         ul.navbar-nav

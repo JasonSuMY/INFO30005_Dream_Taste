@@ -82,7 +82,7 @@ let displayProfile = function(req, res, next) {
 
 let logout = function(req, res, next) {
     if (req.session) {
-        req.session.destory(function(err) {
+        req.session.destroy(function(err) {
             if (err) {
                 next(err);
             } else {
