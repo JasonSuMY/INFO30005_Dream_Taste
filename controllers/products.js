@@ -93,10 +93,11 @@ let addProduct = function(req, res) {
     // Save the product to the database.
     newProduct.save(function(err, newProduct){
         if (!err){
-            res.render('product', {
+            res.render('productDetail', {
                 msgType: "SUCCESS",
                 msg: "Success! Product added.",
-                product: newProduct
+                product: newProduct,
+                comments: newProduct.comments
             });
         }else{
             Categories.find(function(cateErr, categories) {
