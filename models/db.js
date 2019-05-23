@@ -3,7 +3,8 @@ const dbURL = "mongodb+srv://mingyu:Cheng19980610@cluster0-qtfpr.mongodb.net/";
 
 const options = {
     dbName: "Dream_Taste",
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
 };
 
 // Connect to the database.
