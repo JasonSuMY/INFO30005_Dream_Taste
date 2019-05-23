@@ -39,8 +39,8 @@ block content
                     h4(class = "card-title") #{comment.title}
                     p(class = "card-text") #{comment.body}
 
-        .row
-            button(class="col-md-12 btn btn-warning text-center my-2", data-toggle="modal", data-target="#addComment") Add Comment
+        div(class="row justify-content-center")
+            button(class="col-md-8 btn btn-warning text-center my-2", data-toggle="modal", data-target="#addComment") Add Comment
 
             div(class="modal fade", id="addComment")
                 div(class="modal-dialog modal-dialog-centered")
