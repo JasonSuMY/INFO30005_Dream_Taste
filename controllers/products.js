@@ -222,7 +222,7 @@ let addRating = function(req, res) {
                 
                 const newRating = (rating * numOfRatings + postedRating) / product.numOfRatings;
 
-                product.rating = newRating;             
+                product.rating = newRating.toFixed(1);             
 
                 product.save(function(err) {
                     if (!err) {
