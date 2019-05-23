@@ -4,10 +4,10 @@ block content
     link(rel="stylesheet", href="/stylesheets/products.css")
 
     .container-fluid
-        .row
+        div(id ="products",class = "row")
             div(id="addProduct", class='col-md-3 card')
-                img(src="/images/plusIcon.png", style="width:100%")
-                a(href="/addProduct") Add Product
+                a(href ="/addProduct")
+                    .add
             each product in products
                 div(class="col-md-3 card")
                     img(class="card-img-top", src=`${product.image}`, alt="Drink image")
