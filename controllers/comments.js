@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Comments = mongoose.model('Comments');
 const Products = mongoose.model('Products');
 
-const addComment = function(req, res) {
+const addComment = function(req, res, next) {
     const id = req.params.id;
 
     Products.findById(id, function(err, product) {
@@ -21,15 +21,15 @@ const addComment = function(req, res) {
                         if (!err) {
                             res.redirect(`/products/${id}`);
                         } else {
-                            res.status(400).send(err);
+                            return next(err);
                         }
                     });
                 } else {
-                    res.status(400).send(err);
+                    return next(err);
                 }
             });
         } else {
-            res.status(400).send(err);
+            return next(err);
         }
     });
 

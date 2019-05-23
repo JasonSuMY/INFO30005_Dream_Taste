@@ -5,15 +5,17 @@ block content
     form(id="register-form", action='/register', method="POST")
         div
             input#username(type='text', name='username', required='', placeholder=' ')
-            label(for='username')  UserName
+            label(for='username')  Username
         div
             input#email(type='email', name='email', required='', placeholder=' ')
             label(for='email') Email Address
-            .requirements
-                | Must be a valid email address.
+
         div
             input#password(type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
             label(for='password') Password
             .requirements
                 | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+        div
+            input#password(type='password', name='passwordConf', required='', placeholder=' ')
+            label(for='passwordConf') Confirm Password
         input(type='submit', value='Sign Up')

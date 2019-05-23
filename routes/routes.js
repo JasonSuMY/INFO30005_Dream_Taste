@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controllers = require('../controllers/controllers.js');
+const controllers = require('../controllers/utils.js');
 const products = require('../controllers/products.js');
 const users = require('../controllers/users.js');
 const categories = require('../controllers/categories.js');
@@ -50,5 +50,11 @@ router.post('/addComment/:id', comments.addComment);
 
 // Add rating to the product.
 router.post('/addRating/:id', products.addRating);
+
+// Display the user profile if he/she is logged in.
+router.get('/profile', users.displayProfile);
+
+// Log out from the web.
+router.get('/logout', users.logout);
 
 module.exports = router;

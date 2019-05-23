@@ -15,4 +15,12 @@ let loadMainPage = function(req, res) {
     });
 }
 
+// let requiresLogin = function(req, res, next) {
+//     if (req.session && req.session.userID) {
+//         return next();
+//     } else {
+
+//     }
+// };
+
 module.exports.loadMainPage = loadMainPage;
