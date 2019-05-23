@@ -68,6 +68,60 @@
 	font-size: 15px;
 }
 
+#star{
+    width: 200px;
+    font-size: 20px;
+    font-weight:bold;
+}
+
+#star-div{
+	float:right;
+    margin:5px;
+    font-size: 0;
+}
+
+#star-div a{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(http://files.cnblogs.com/files/susufufu/star0.gif) no-repeat;
+}
+
+#star-div .active{
+    background: url(http://files.cnblogs.com/files/susufufu/star1.gif) no-repeat;
+}
+
+#star-info{
+      position: absolute;
+      display: none;
+      width: 155px;
+      height: 50px;
+      line-height: 17px;
+      border-radius: 8px;
+      background-color: gold;
+      z-index: 5;
+}
+
+#star-info:before{
+      content: '';
+      border-bottom: 10px solid gold;
+      border-left: 10px solid rgba(0,0,0,0);
+      border-right: 10px solid rgba(0,0,0,0);
+      position: absolute;
+      left: 35px;
+      top: -10px;
+}
+    
+#star-span{
+	line-height: 14px;
+}
+
+#star-info strong,#star-span strong{
+      color: red;
+}
+
+
+
 .images{
 	position: relative;
 	width: 372px;

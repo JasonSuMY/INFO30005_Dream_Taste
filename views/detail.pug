@@ -16,28 +16,11 @@ block content
                         span.detail_title Score: 
                         span.special_content #{product.rating}
                     hr
-                    p
-                        span.detail_title Energy: 
-                        span.content 180 KJ (per 100mL)
-                    hr
-                    p
-                        span.detail_title Protein: 
-                        span.content 0 g
-                    hr
-                    p
-                        span.detail_title Fat: 
-                        span.content 0 g
-                    hr
-                    p
-                        span.detail_title Sugar: 
-                        span.content 10.6 g (per 100mL)
-                    hr
-                    p
-                        span.related Related: 
-                        span.related_pdt
-                            a(href='') Coca Cola No Sugar
-                            | , 
-                            a(href='') Diet Coca Cola
+                    #star
+                        span Rate:
+                        #star-div
+                        span#star-span
+                        p#star-info
             .images
                  #top.top_images(style='left:0px;')
                     img#picture(src=`${product.image}`, alt="product picture")
@@ -105,4 +88,5 @@ block content
             .show_more_comment
                 button show more comments
     script(src='/javascripts/image.js')
+    script(src='/javascripts/rate.js')
 
