@@ -6,22 +6,14 @@ block content
     script(src="/javascripts/rate.js")
 
     div(class = "container-fluid container-box")
-        .row
+        div(class="row justify-content-center mt-3")
             div(class="col-md-4 card")
                 img(class="card-img-top", src=`${product.image}`)
 
             div(class="col-md-6 card")
-                h1(class = "card-title text-center") #{product.name}
-                p(class = "card-text") Description: #{product.description}
-
-                //- #star
-                //-     span Rate:
-                //-     #star-div
-                //-     span#star-span
-                //-     p#star-info
-
-            div(class="col-md-2")
-                h3 Score: #{product.rating}
+                h1(class="card-title text-center") #{product.name}
+                h3 Score:
+                    span(class="ml-3 text-warning") #{product.rating}
                 form(method="POST", action=`/addRating/${product._id}`)
                     div(class="rating")
                         input(type="radio" id="star5" name="rating" value="5")
@@ -34,13 +26,16 @@ block content
                         label(for="star2" title="Under Average") 2 stars
                         input(type="radio" id="star1" name="rating" value="1")
                         label(for="star1" title="Disappointing") 1 star
-                    button(type="submit", class="btn btn-warning") Rate                  
+                    button(type="submit", class="btn btn-warning ml-3") Rate      
+                h4(class="card-title") Description 
+                p(class="card-text") #{product.description}                 
 
         .row
             h1(class = "col-md-12 text-center") Comments
 
-            each comment in comments
-                div(class = "col-md-4 card")
+        each comment in comments
+            div(class="row justify-content-center")
+                div(class = "col-md-8 card mb-3")
                     h4(class = "card-title") #{comment.title}
                     p(class = "card-text") #{comment.body}
 
