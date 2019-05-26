@@ -15,12 +15,14 @@ let loadMainPage = function(req, res) {
     });
 }
 
-// let requiresLogin = function(req, res, next) {
-//     if (req.session && req.session.userID) {
-//         return next();
-//     } else {
-
-//     }
-// };
+let requiresLogin = function(req, res, next) {
+    if (req.session && req.session.userID) {
+        return next();
+    } else {
+        req.flash("error", "Requires login.");
+        res.redirect("back");
+    }
+};
 
 module.exports.loadMainPage = loadMainPage;
+module.exports.requiresLogin = requiresLogin;

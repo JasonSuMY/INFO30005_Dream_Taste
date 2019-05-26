@@ -55,23 +55,8 @@ function checkFileType(file, next) {
 let uploadImage = function(req, res, next) {
     upload(req, res, function(err) {
         if (err) {
-            Categories.find(function(cateErr, categories) {
-                if (!cateErr) {
-                    res.render("addProduct", {
-                        title: "Fail to add product",
-                        msgType: "ERROR",
-                        msg: err,
-                        categories: categories
-                    });
-                } else {
-                    res.render("addProduct", {
-                        title: "Fail to add product",
-                        msgType: "ERROR",
-                        msg: err + '\n' + cateErr,
-                        categories: categories
-                    });
-                }
-            });
+            req.flash("error", `${err}`);
+            res.redirect("back");
         } else {
             next();
         }
@@ -93,30 +78,11 @@ let addProduct = function(req, res) {
     // Save the product to the database.
     newProduct.save(function(err, newProduct){
         if (!err){
-            res.render('productDetail', {
-                msgType: "SUCCESS",
-                msg: "Success! Product added.",
-                product: newProduct,
-                comments: newProduct.comments
-            });
-        }else{
-            Categories.find(function(cateErr, categories) {
-                if (!cateErr) {
-                    res.render("addProduct", {
-                        title: "Fail to save product",
-                        msgType: "ERROR",
-                        msg: err,
-                        categories: categories
-                    });
-                } else {
-                    res.render("addProduct", {
-                        title: "Fail to save product",
-                        msgType: "ERROR",
-                        msg: err + '\n' + cateErr,
-                        categories: categories
-                    });
-                }
-            });
+            req.flash("success", "Product is added.");
+            res.redirect('/products');
+        } else{
+            req.flash("error", `Fail to add product. ${err}`);
+            res.redirect("back");
         }
     });
 };
@@ -206,6 +172,7 @@ let search = function(req, res) {
     }); 
 };
 
+// Add rating to the product with the specified ID.
 let addRating = function(req, res) {
     const id = req.params.id;
 

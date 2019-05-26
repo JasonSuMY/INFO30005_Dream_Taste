@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controllers = require('../controllers/utils.js');
+const utils = require('../controllers/utils.js');
 const products = require('../controllers/products.js');
 const users = require('../controllers/users.js');
 const categories = require('../controllers/categories.js');
@@ -10,7 +10,7 @@ const comments = require('../controllers/comments.js');
 
 
 // Load the main page.
-router.get('/', controllers.loadMainPage);
+router.get('/', utils.loadMainPage);
 
 // Display the log in page.
 router.get('/login', users.login);
@@ -34,10 +34,10 @@ router.get('/categories/:category', products.findProductByCategory);
 router.get('/products/:id', products.findProductByID);
 
 // Display the add-product page.
-router.get('/addProduct', products.displayAddProduct);
+router.get('/addProduct', utils.requiresLogin, products.displayAddProduct);
 
 // Add the product the the database.
-router.post('/addProduct', products.uploadImage, products.addProduct);
+router.post('/addProduct', utils.requiresLogin, products.uploadImage, products.addProduct);
 
 // Display all the categories
 router.get('/categories', categories.allCategories);
@@ -46,10 +46,10 @@ router.get('/categories', categories.allCategories);
 router.post('/search', products.search);
 
 // Add comment to the product.
-router.post('/addComment/:id', comments.addComment);
+router.post('/addComment/:id', utils.requiresLogin, comments.addComment);
 
 // Add rating to the product.
-router.post('/addRating/:id', products.addRating);
+router.post('/addRating/:id', utils.requiresLogin, products.addRating);
 
 // Display the user profile if he/she is logged in.
 router.get('/profile', users.displayProfile);

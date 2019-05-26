@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
+const flash = require('connect-flash');
 
+// Setting up the bodyparser, so the body of the request can be parsed as JSON
+// object.
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,6 +16,9 @@ app.use(session({
    saveUninitialized: false
 }));
 
+// Setting up the flash, so messages can be passed around.
+app.use(flash());
+
 // Setting up the response local variables, which are available to the views.
 app.use(function(req, res, next) {
    if (req.session && req.session.userID) {
@@ -20,6 +26,8 @@ app.use(function(req, res, next) {
    } else {
       res.locals.authenticated = false;
    }
+   res.locals.success = req.flash('success');
+   res.locals.error = req.flash('error');
    next();
 });
 
@@ -41,7 +49,9 @@ app.use('/', routes);
 // error handler
 app.use(function(err, req, res, next) {
    res.status(err.status || 500);
-   res.send(err.message);
+   res.render("error", {
+      message: err.message
+   });
 });
 
 app.listen(PORT, function () {

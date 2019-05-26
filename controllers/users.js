@@ -15,11 +15,8 @@ let validateLogin = function(req, res, next) {
                 req.session.userID = user._id;
                 res.redirect('/profile');
             } else {
-                res.render('login', {
-                    title: "User Login",
-                    msgType: "ERROR",
-                    msg: "Invalid email or password"
-                });
+                req.flash("error", "Invalid username or password.");
+                res.redirect("back");
             }
         } else {
             return next(err);
@@ -38,10 +35,8 @@ let displayRegister = function(req, res) {
 let register = function(req, res, next) {
 
     if (req.body.password !== req.body.passwordConf) {
-        const err = new Error("Passwords do not match");
-        err.status = 400;
-        res.send("Passwords do not match");
-        return next(err);
+        req.flash("error", "Passwords do not match.");
+        res.redirect("back");
     }
 
     const newUser = new Users({
