@@ -1,15 +1,15 @@
 extends default
 
 block content
+    script(src="/javascripts/fileUpload.js")
 
-    link(rel="stylesheet", href="/stylesheets/addProduct.css")
     .container-fluid
-        form(method="POST", enctype="multipart/form-data")
+        form(method="POST", enctype="multipart/form-data", class="my-3")
             .form-group
                 label(for="productName") Product Name:
                 input(type="text", id="productName", class="form-control", name="productName", required='', placeholder="product name")
             .custom-file
-                input(type="file", id="productImage", class="custom-file-input",required='', name="productImage")
+                input(type="file", id="productImage", class="custom-file-input", required='', name="productImage")
                 label(class="custom-file-label" for="productImage") Choose file
             .form-group
                 label(for="description") Product Description:
