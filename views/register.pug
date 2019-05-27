@@ -18,4 +18,6 @@ block content
         div
             input#password(type='password', name='passwordConf', required='', placeholder=' ')
             label(for='passwordConf') Confirm Password
+            .requirements
+                | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
         input(type='submit', value='Sign Up')

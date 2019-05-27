@@ -87,9 +87,111 @@ let logout = function(req, res, next) {
     }
 };
 
+let editUserName = function(req, res, next) {
+    Users.findByID(req.session.userID).
+        exec(function(err, user) {
+            if(err) {
+                return next(err);
+            } else {
+                if (user == null) {
+                    const err = new Error("Not authorized");
+                    err.status = 400;
+                     return next(err);
+                } else {
+                    if (req.body.username) {
+                        user.username = req.body.username;
+                    } else {
+                        const err = new Error("Invalid Username");
+                        err.status = 400;
+                        return next(err);
+                    }
+                    user.save(function(err, user){
+                        if (!err){
+                            req.flash("success", "Edit Successfully.");
+                            res.redirect('/profile');
+                        } else{
+                            req.flash("error", `Fail to edit. ${err}`);
+                            res.redirect("back");
+                        }
+                    });
+
+            }
+        }
+    })
+};
+
+let editPassword = function(req, res, next) {
+    Users.findById(req.session.userID).
+    exec(function(err, user) {
+        if(err) {
+            return next(err);
+        } else {
+            if (user == null) {
+                const err = new Error("Not authorized");
+                err.status = 400;
+                return next(err);
+            } else {
+                if (req.body.password && (req.body.password === req.body.passwordConf)) {
+                    user.password = req.body.password;
+                } else {
+                    const err = new Error("Invalid Password");
+                    err.status = 400;
+                    return next(err);
+                }
+                user.save(function(err, user){
+                    if (!err){
+                        req.flash("success", "Edit Successfully.");
+                        res.redirect('/profile');
+                    } else{
+                        req.flash("error", `Fail to edit. ${err}`);
+                        res.redirect("back");
+                    }
+                });
+
+            }
+        }
+    })
+};
+
+let editEmail = function(req, res, next) {
+    Users.findByID(req.session.userID).
+    exec(function(err, user) {
+        if(err) {
+            return next(err);
+        } else {
+            if (user == null) {
+                const err = new Error("Not authorized");
+                err.status = 400;
+                return next(err);
+            } else {
+                if (req.body.email) {
+                    user.email = req.body.email;
+                } else {
+                    const err = new Error("Invalid Email");
+                    err.status = 400;
+                    return next(err);
+                }
+                user.save(function(err, user){
+                    if (!err){
+                        req.flash("success", "Edit Successfully.");
+                        res.redirect('/profile');
+                    } else{
+                        req.flash("error", `Fail to edit. ${err}`);
+                        res.redirect("back");
+                    }
+                });
+
+            }
+        }
+    })
+};
+
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
 module.exports.displayRegister = displayRegister;
 module.exports.register = register;
 module.exports.displayProfile = displayProfile;
 module.exports.logout = logout;
+module.exports.editUserName = editUserName;
+module.exports.editPassword = editPassword;
+module.exports.editEmail = editEmail;
