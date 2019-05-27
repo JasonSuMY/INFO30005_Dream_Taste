@@ -57,4 +57,7 @@ router.get('/profile', users.displayProfile);
 // Log out from the web.
 router.get('/logout', users.logout);
 
+// Display the trending products.
+router.get('/trending', products.trending);
+
 module.exports = router;

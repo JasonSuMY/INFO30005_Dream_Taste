@@ -43,5 +43,33 @@ UserSchema.statics.authenticate = function(email, password, cb) {
          });
 };
 
+// Add a customed validator to make sure email will be unique.
+UserSchema.path("email").validate(function(value, done) {
+    Users.count({ email: value }, function(err, count) {
+        if (err) {
+            return done(err);
+        }
+        if (count === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+}, "Email already registered.");
+
+// Add a customed validator to make sure username will be unique.
+UserSchema.path("username").validate(function(value, done) {
+    Users.count({ username: value }, function(err, count) {
+        if (err) {
+            return done(err);
+        }
+        if (count === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+}, "Username already taken.");
+
 const Users = mongoose.model("Users", UserSchema);
 module.exports = Users;
