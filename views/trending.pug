@@ -1,0 +1,18 @@
+extends default
+
+block content
+    - var rank = 1
+    .container-fluid
+
+        .card-column
+            each product in products
+                .row.card.m-3.py-3.bg-light.flex-row.flex-wrap
+                    h1.col-md-1 #{rank}.
+                    .col-md-3
+                        img(src=`${product.image}`, alt=`${product.name}'s image`, class="img-thumbnail")
+                    a(href=`/products/${product.id}`, class="col-md-2") #{product.name}
+                    p.col-md-2 #{product.rating}
+                    p.col-md-2 #{product.numOfViews}
+                    p.col-md-2 #{product.popularity}
+
+                - rank += 1

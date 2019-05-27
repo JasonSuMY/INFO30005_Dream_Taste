@@ -131,12 +131,24 @@ let displayAddProduct = function(req, res) {
 };
 
 // Find a product by its ID.
-let findProductByID = function(req, res) {
+let findProductByID = function(req, res, next) {
     const id = req.params.id;
     Products.findById(id).
         populate('comments').
         exec(function(err, product) {
             if (!err) {
+
+                // Update the view count if a user is loged in.
+                if (res.locals.authenticated) {
+                    product.numOfViews++;
+
+                    product.save(function(err) {
+                        if (err) {
+                            next(err);
+                        }
+                    });
+                }
+
                 res.render("productDetail", {
                     title: product.name,
                     product: product,
@@ -203,7 +215,24 @@ let addRating = function(req, res) {
             res.send("ERROR: Finding the product");
         }
     });
-}
+};
+
+// Display the trending products.
+let trending = function(req, res, next) {
+    Products.find({}).
+             limit(10).
+             sort({popularity: -1, rating: -1}).
+             exec(function(err, products) {
+                if (err) {
+                    next(err);
+                } else {
+                    res.render('trending', {
+                        title: "Trending",
+                        products: products
+                    });
+                }
+    });
+};
 
 module.exports.allProducts = allProducts;
 module.exports.findProductByCategory = findProductByCategory;
@@ -213,3 +242,4 @@ module.exports.findProductByID = findProductByID;
 module.exports.uploadImage = uploadImage;
 module.exports.search = search;
 module.exports.addRating = addRating;
+module.exports.trending = trending;
