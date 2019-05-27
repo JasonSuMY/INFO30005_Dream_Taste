@@ -2,9 +2,7 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
-
-    //div(class="container-box container-fluid")
-    //    h1 Hello, #{user.username}
+    script(src="/javascripts/fileUpload.js")
     .container
         .row.my-2
             .col-lg-8.order-lg-2
@@ -29,28 +27,28 @@ block content
                     #wishlist.tab-pane
 
                     #edit.tab-pane
-                        form(method="POST", enctype="text/plain")
+                        form(method="POST", enctype="multipart/form-data", class="my-3")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label User name
                                 .col-lg-9
-                                    input.form-control(type='text', id = "username", name = "username",required='', value= user.username)
+                                    input.form-control(type='text', id = "username", name = "username", value= user.username)
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Email
                                 .col-lg-9
-                                    input.form-control(type='email', id = "email", name = "email", required='', value= user.email)
+                                    input.form-control(type='email', id = "email", name = "email", value= user.email)
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Password
                                 .col-lg-9
-                                    input.form-control(type='password', id= "password", name='password',required='', value='',pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
+                                    input.form-control(type='password', id= "password", name='password', value= user.password, pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Confirm password
                                 .col-lg-9
-                                    input.form-control(type='password', id="passwordconf" , name='passwordconf',required='', value='')
+                                    input.form-control(type='password', id="passwordconf" , name='passwordconf', value= user.password)
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Avatar
                                 .col-lg-9
                                     label(class="custom-file-label" for="useravatar", id="file-upload")
-                                    input(type="file", id="useravatar", class="custom-file-input", required='', name="useravatar")
+                                    input(type="file", id="useravatar", class="custom-file-input", name="useravatar")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label
                                 .col-lg-9
