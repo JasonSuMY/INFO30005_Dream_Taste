@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const session = require('express-session');
 app.use(session({
    secret: "matrix",
+   cookie: {maxAge: 60000},
    resave: true,
    saveUninitialized: false
 }));
