@@ -1,23 +1,27 @@
 extends default
 
 block content
+    link(rel="stylesheet", href="/stylesheets/containerBox.css")
     link(rel="stylesheet", href="/stylesheets/register.css")
-    form(id="register-form", action='/register', method="POST")
-        div
-            input#username(type='text', name='username', required='', placeholder=' ')
-            label(for='username')  Username
-        div
-            input#email(type='email', name='email', required='', placeholder=' ')
-            label(for='email') Email Address
 
-        div
-            input#password(type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
-            label(for='password') Password
-            .requirements
-                | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
-        div
-            input#password(type='password', name='passwordConf', required='', placeholder=' ')
-            label(for='passwordConf') Confirm Password
-            .requirements
-                | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
-        input(type='submit', value='Sign Up')
+    .container-box
+        .mt-5
+            form(id="register-form", action='/register', method="POST")
+                div
+                    input#username(type='text', name='username', required='', placeholder=' ')
+                    label(for='username')  Username
+                div
+                    input#email(type='email', name='email', required='', placeholder=' ')
+                    label(for='email') Email Address
+
+                div
+                    input#password(type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
+                    label(for='password') Password
+                    .requirements
+                        | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+                div
+                    input#password(type='password', name='passwordConf', required='', placeholder=' ')
+                    label(for='passwordConf') Confirm Password
+                    .requirements
+                        | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+                input(type='submit', value='Sign Up')

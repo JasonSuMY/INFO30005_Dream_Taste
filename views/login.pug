@@ -1,13 +1,16 @@
 extends default
 
 block content
+    link(rel="stylesheet", href="/stylesheets/containerBox.css")
     link(rel="stylesheet", href="/stylesheets/login.css")
     
-    form(action='/login', id="login-form", method="POST")
-        div
-            input#username(type='text', name='email', required='', placeholder=' ')
-            label(for='email')  email
-        div
-            input#password(type='password', name='password', required='', placeholder=' ')
-            label(for='password') Password
-        input(type='submit', value='Login')
+    .container-box
+        .mt-5
+            form(action='/login', id="login-form", method="POST")
+                div
+                    input#username(type='text', name='email', required='', placeholder=' ')
+                    label(for='email')  email
+                div
+                    input#password(type='password', name='password', required='', placeholder=' ')
+                    label(for='password') Password
+                input(type='submit', value='Login')
