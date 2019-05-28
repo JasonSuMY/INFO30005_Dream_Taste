@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
+const Products = mongoose.model('Products');
 
 // Used to upload image.
 const multer = require('multer');
@@ -238,6 +239,8 @@ let uploadAvatar = function(req, res, next) {
         }
     });
 };
+
+
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
 module.exports.displayRegister = displayRegister;

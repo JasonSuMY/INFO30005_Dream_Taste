@@ -29,7 +29,8 @@ block content
                     button(type="submit", class="btn btn-warning ml-3") Rate
                 h4(class="card-title") Description 
                 p(class="card-text") #{product.description}
-                button(type = "submit", class ="btn btn-warning ") Add to wish list
+                form(method="POST", action=`/addToWishlist/${product._id}`)
+                    button(type = "submit", class ="btn btn-warning ") Add to wish list
 
         .row
             h1(class = "col-md-12 text-center") Comments
