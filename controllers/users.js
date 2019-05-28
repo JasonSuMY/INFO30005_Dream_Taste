@@ -1,12 +1,59 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 
+// Used to upload image.
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+
+// Set up the cloud storage space for image upload.
+cloudinary.config({
+    cloud_name: "hkdac1yvv",
+    api_key: "155176919271884",
+    api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
+});
+
 let login = function(req, res) {
     res.render("login", {
         title: "User Login"
     });
 };
 
+// Initialise storage engine.
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "userAvatars",
+    filename: function(req, file, next) {
+        next(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Initialise upload.
+const upload = multer({
+    storage: storage,
+    limits : {fileSize:  250 * 250 * 5},
+    fileFilter: function(req, file, next) {
+        checkFileType(file, next);
+    }
+}).single("userAvatar");
+
+// Check the type of the files.
+function checkFileType(file, next) {
+    // Allowed file extensions
+    const fileTypes = /jpeg|jpg|png|gif/;
+
+    // Check the file extensions
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+
+    // Check the mime type
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+        return next(null, true);
+    } else {
+        next("Error: Images only!");
+    }
+}
 // Validate the user log in.
 let validateLogin = function(req, res, next) {
     Users.authenticate(req.body.email, req.body.password, function(err, user) {
@@ -93,81 +140,10 @@ let editUserName = function(req, res, next) {
             if(err) {
                 return next(err);
             } else {
-                if (user == null) {
-                    const err = new Error("Not authorized");
-                    err.status = 400;
-                     return next(err);
+                if (req.body.username !== null) {
+                    user.username = req.body.username;
                 } else {
-                    if (req.body.username !== null) {
-                        user.username = req.body.username;
-                    } else {
-                        const err = new Error("Invalid Username");
-                        err.status = 400;
-                        return next(err);
-                    }
-                    user.save(function(err){
-                        if (!err){
-                            req.flash("success", "Edit Successfully.");
-                            res.redirect('/profile');
-                        } else{
-                            req.flash("error", `Fail to edit. ${err}`);
-                            res.redirect("back");
-                        }
-                    });
-
-            }
-        }
-    })
-};
-
-let editPassword = function(req, res, next) {
-    Users.findById(req.session.userID).
-    exec(function(err, user) {
-        if(err) {
-            return next(err);
-        } else {
-            if (user == null) {
-                const err = new Error("Not authorized");
-                err.status = 400;
-                return next(err);
-            } else {
-                if (req.body.password !== null && req.body.password === req.body.passwordConf) {
-                    user.password = req.body.password;
-                } else {
-                    const err = new Error("Invalid Password");
-                    err.status = 400;
-                    return next(err);
-                }
-                user.save(function(err, user){
-                    if (!err){
-                        req.flash("success", "Edit Successfully.");
-                        res.redirect('/profile');
-                    } else{
-                        req.flash("error", `Fail to edit. ${err}`);
-                        res.redirect("back");
-                    }
-                });
-
-            }
-        }
-    })
-};
-
-let editEmail = function(req, res, next) {
-    Users.findById(req.session.userID).
-    exec(function(err, user) {
-        if(err) {
-            return next(err);
-        } else {
-            if (user == null) {
-                const err = new Error("Not authorized");
-                err.status = 400;
-                return next(err);
-            } else {
-                if (req.body.email !== null) {
-                    user.email = req.body.email;
-                } else {
-                    const err = new Error("Invalid Email");
+                    const err = new Error("Invalid Username");
                     err.status = 400;
                     return next(err);
                 }
@@ -180,12 +156,88 @@ let editEmail = function(req, res, next) {
                         res.redirect("back");
                     }
                 });
-
             }
+    })
+};
+
+let editPassword = function(req, res, next) {
+    Users.findById(req.session.userID).
+    exec(function(err, user) {
+        if(err) {
+            return next(err);
+        } else {
+            if (req.body.password !== null && req.body.password === req.body.passwordConf) {
+                user.password = req.body.password;
+            } else {
+                const err = new Error("Invalid Password");
+                err.status = 400;
+                return next(err);
+            }
+            user.save(function(err, user){
+                if (!err){
+                    req.flash("success", "Edit Successfully.");
+                    res.redirect('/profile');
+                } else{
+                    req.flash("error", `Fail to edit. ${err}`);
+                    res.redirect("back");
+                }
+            });
         }
     })
 };
 
+let editEmail = function(req, res, next) {
+    Users.findById(req.session.userID).
+    exec(function(err, user) {
+        if(err) {
+            return next(err);
+        } else {
+            if (req.body.email !== null) {
+                user.email = req.body.email;
+            } else {
+                const err = new Error("Invalid Email");
+                err.status = 400;
+                return next(err);
+            }
+            user.save(function(err){
+                if (!err){
+                    req.flash("success", "Edit Successfully.");
+                    res.redirect('/profile');
+                } else{
+                    req.flash("error", `Fail to edit. ${err}`);
+                    res.redirect("back");
+                }
+            });
+        }
+    })
+};
+
+let editAvatar = function(req, res, next) {
+    Users.findById(req.session.userID).
+    exec(function(err, user) {
+        user.avatar = req.file.url;
+        user.save(function(err) {
+            if (!err){
+                req.flash("success", "Avatar is uploaded.");
+                res.redirect('/products');
+            } else{
+                req.flash("error", `Fail to upload avatar. ${err}`);
+                res.redirect("back");
+            }
+        })
+    })
+};
+
+let uploadAvatar = function(req, res, next) {
+    upload(req, res, function(err) {
+        if (err) {
+            req.flash("error", `${err}`);
+            res.redirect("back");
+        } else {
+            next();
+        }
+    });
+};
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
 module.exports.displayRegister = displayRegister;
@@ -195,3 +247,5 @@ module.exports.logout = logout;
 module.exports.editUserName = editUserName;
 module.exports.editPassword = editPassword;
 module.exports.editEmail = editEmail;
+module.exports.editAvatar = editAvatar;
+module.exports.uploadAvatar = uploadAvatar;

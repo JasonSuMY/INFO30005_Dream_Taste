@@ -54,7 +54,7 @@ router.post('/addRating/:id', utils.requiresLogin, products.addRating);
 // Display the user profile if he/she is logged in.
 router.get('/profile', users.displayProfile);
 
-router.post("/profile", users.editUserName, users.editEmail, users.editPassword);
+router.post("/profile", users.editUserName, users.editEmail, users.editPassword, users.uploadAvatar, users.editAvatar);
 
 // Log out from the web.
 router.get('/logout', users.logout);

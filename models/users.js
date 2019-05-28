@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema(
     {
         username: {type: String, unique: true, required: true, trim: true},
         password: {type: String, required: true},
+        avatar: {type: String, default: '//placehold.it/250'},
         email: {type: String, unique: true, required: true, trim: true}
     }
 );
