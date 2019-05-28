@@ -11,23 +11,9 @@ html
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
     body
         block header
-            header.container-fluid
-                .row
-                    .col-md-10
-                        img(src="/images/logo03.png", alt="logo", id="logo")
-                    
-                    if authenticated
-                        .col-md-1
-                            a(href='/profile', class="btn btn-warning", role="button") Profile
-                        .col-md-1
-                            a(href='/logout', class="btn btn-warning", role="button") Logout
-                    else
-                        .col-md-1
-                            a(href='/login', class="btn btn-warning", id="login", role="button") Login
-                        .col-md-1
-                            a(href='/register', class="btn btn-warning", id="register", role="button") Register
-                nav(class="row navbar navbar-expand-sm")
-                    .col-md-9
+            .container-fluid
+                nav(class="row navbar navbar-expand-sm bg-light border-bottom", id="top-nav")
+                    .col-md-7
                         ul.navbar-nav
                             li.nav-item
                                 a(class="nav-link", href="/") Home
@@ -45,6 +31,17 @@ html
                                 input(type="text", name="search", id="search", class="form-control", placeholder="Search")
                                 .input-group-append
                                     button(type="submit", class="btn btn-warning") Search
+                    if authenticated
+                        .col-md-1
+                            a(href='/profile', class="btn btn-warning", role="button") Profile
+                        .col-md-1
+                            a(href='/logout', class="btn btn-warning", role="button") Logout
+                    else
+                        .col-md-1
+                            a(href='/login', class="btn btn-warning", id="login", role="button") Login
+                        .col-md-1
+                            a(href='/register', class="btn btn-warning", id="register", role="button") Register                  
+                    
 
         block message
             if error && error.length > 0

@@ -6,7 +6,7 @@ let loadMainPage = function(req, res) {
     Products.find(function(err, products) {
         if (!err) {
             res.render("index", {
-                title: "All Products",
+                title: "Home",
                 products: products
             });
         } else {

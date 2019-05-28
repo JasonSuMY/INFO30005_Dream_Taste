@@ -3,7 +3,22 @@ extends default
 block content
     link(rel="stylesheet", href="/stylesheets/index.css")
 
-    .container-fluid
+    .container-fluid.p-0
+        div(id="welcome", class="carousel slide", data-ride="carousel")
+            ul.carousel-indicators
+                li(data-target="#welcome", data-slide-to="0", class="active")
+            
+            .carousel-inner
+                .carousel-item.active
+                    img(src="/images/OrangeJuice.jpg", alt="Find your dream taste")
+
+            a(class="carousel-control-prev", href="#welcome", data-slide="prev")
+                span.carousel-control-prev-icon
+
+            a(class="carousel-control-next", href="#welcome", data-slide="next")
+                span.carousel-control-next-icon
+
+    .container-fluid.mt-3
         .row
             each product in products
                 div(class="col-md-3 card")
