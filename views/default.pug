@@ -6,6 +6,7 @@ html
         mata(charset="UTF-8")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
         link(rel="stylesheet", href="/stylesheets/default.css")
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.8.2/css/all.css', integrity='sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay', crossorigin='anonymous')
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js")
@@ -27,8 +28,7 @@ html
                                 a(class="nav-link dropdown-toggle", data-toggle="dropdown", href="#Contact-Us") Contact Us
                                 .dropdown-menu
                                     .dropdown-item
-                                         h6 Our Email
-                                         p contactus@gmail.com
+                                        i(class="fas fa-envelope") contactus@gmail.com
                     .col-md-3
                         form(class="form-inline ", action="/search", method="POST")
                             .input-group
