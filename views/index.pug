@@ -7,11 +7,13 @@ block content
         div(id="welcome", class="carousel slide", data-ride="carousel")
             ul.carousel-indicators
                 li(data-target="#welcome", data-slide-to="0", class="active")
+                li(data-target="#welcome", data-slide-to="1")
             
             .carousel-inner
                 .carousel-item.active
                     img(src="/images/OrangeJuice.jpg", alt="Find your dream taste")
-
+                .carousel-item
+                    img(src='/images/lemonjuice.jpg', alt='Find your dream taste')
             a(class="carousel-control-prev", href="#welcome", data-slide="prev")
                 span.carousel-control-prev-icon
 

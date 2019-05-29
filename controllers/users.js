@@ -14,11 +14,6 @@ cloudinary.config({
     api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
 });
 
-let login = function(req, res) {
-    res.render("login", {
-        title: "User Login"
-    });
-};
 
 // Initialise storage engine.
 const storage = cloudinaryStorage({
@@ -55,6 +50,13 @@ function checkFileType(file, next) {
         next("Error: Images only!");
     }
 }
+
+let login = function(req, res) {
+    res.render("login", {
+        title: "User Login"
+    });
+};
+
 // Validate the user log in.
 let validateLogin = function(req, res, next) {
     Users.authenticate(req.body.email, req.body.password, function(err, user) {
@@ -115,7 +117,7 @@ let displayProfile = function(req, res, next) {
                     return next(err);
                 } else {
                     res.render('profile', {
-                        title: `${user.username}'s Profile`,
+                        title: `Profile`,
                         user: user
                     });
                 }
@@ -220,7 +222,7 @@ let editAvatar = function(req, res, next) {
         user.save(function(err) {
             if (!err){
                 req.flash("success", "Avatar is uploaded.");
-                res.redirect('/products');
+                res.redirect('/profile');
             } else{
                 req.flash("error", `Fail to upload avatar. ${err}`);
                 res.redirect("back");
@@ -240,7 +242,27 @@ let uploadAvatar = function(req, res, next) {
     });
 };
 
+let addToWishlist = function (req, res, next) {
+    const id = req.params.id;
+    const userID = req.session.userID;
 
+    Users.findByID = (userID, function(err, user){
+        if(!err) {
+            Products.findById = (id, function(err, product){
+                user.list.push(product);
+                user.save(function(err) {
+                    if (!err) {
+                        res.redirect(`/products/${id}`);
+                    } else {
+                        return next(err);
+                    }
+                });
+            });
+        } else {
+            return next(err);
+        }
+    });
+}
 module.exports.login = login;
 module.exports.validateLogin = validateLogin;
 module.exports.displayRegister = displayRegister;
@@ -252,3 +274,4 @@ module.exports.editPassword = editPassword;
 module.exports.editEmail = editEmail;
 module.exports.editAvatar = editAvatar;
 module.exports.uploadAvatar = uploadAvatar;
+module.exports.addToWishlist = addToWishlist;

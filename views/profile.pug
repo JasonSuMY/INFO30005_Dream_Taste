@@ -25,8 +25,9 @@ block content
                         p.text-warning
                            | #{user.email}
                     #wishlist.tab-pane
-                        //p.text-warining
-                        //   | #{products.name}
+                        each product in user.list
+                            p.text-warning
+                                a(href=`/products/${product.id}`) #{product.name}
                     #edit.tab-pane
                         form(method="POST", enctype="multipart/form-data", class="my-3")
                             .form-group.row

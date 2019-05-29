@@ -51,6 +51,8 @@ router.post('/addComment/:id', utils.requiresLogin, comments.addComment);
 // Add rating to the product.
 router.post('/addRating/:id', utils.requiresLogin, products.addRating);
 
+router.post('addToWishlist/:id', utils.requiresLogin, users.addToWishlist);
+
 // Display the user profile if he/she is logged in.
 router.get('/profile', users.displayProfile);
 

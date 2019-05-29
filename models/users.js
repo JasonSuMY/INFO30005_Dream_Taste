@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema(
@@ -6,7 +7,8 @@ const UserSchema = new mongoose.Schema(
         username: {type: String, unique: true, required: true, trim: true},
         password: {type: String, required: true},
         avatar: {type: String, default: '//placehold.it/250'},
-        email: {type: String, unique: true, required: true, trim: true}
+        email: {type: String, unique: true, required: true, trim: true},
+        list: [{type: Schema.Types.ObjectId, ref: "Products"}]
     }
 );
 
