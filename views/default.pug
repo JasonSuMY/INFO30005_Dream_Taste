@@ -23,8 +23,12 @@ html
                                 a(class="nav-link", href="/trending") Trending
                             li.nav-item
                                 a(class="nav-link", href="/products") All Products
-                            li.nav-item
-                                a(class="nav-link", href="#Contact-Us") Contact Us
+                            li.nav-item.dropdown
+                                a(class="nav-link dropdown-toggle", data-toggle="dropdown", href="#Contact-Us") Contact Us
+                                .dropdown-menu
+                                    .dropdown-item
+                                         h6 Our Email
+                                         p contactus@gmail.com
                     .col-md-3
                         form(class="form-inline ", action="/search", method="POST")
                             .input-group
