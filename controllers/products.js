@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Products = mongoose.model('Products');
 const Categories = mongoose.model('Categories');
+const Users = mongoose.model('Users');
 const path = require('path');
 
 // Used to upload image.
@@ -144,6 +145,18 @@ let findProductByID = function(req, res, next) {
 
                     product.save(function(err) {
                         if (err) {
+                            next(err);
+                        }
+                    });
+                    Users.findById(req.session.userID, function(err, user) {
+                        if(!err) {
+                            res.render("productDetail", {
+                                title: product.name,
+                                product: product,
+                                comments: product.comments,
+                                user:user
+                            });
+                        } else {
                             next(err);
                         }
                     });

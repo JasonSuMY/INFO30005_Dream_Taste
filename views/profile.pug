@@ -2,9 +2,10 @@ extends default
 
 block content
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
+    link(rel="stylesheet", href="/stylesheets/profile.css")
     script(src="/javascripts/fileUpload.js")
-    .container
-        .row.my-2
+    .container-fluid.container-box
+        .row.m-3
             .col-lg-8.order-lg-2
                 ul.nav.nav-tabs
                     li.nav-item
@@ -25,35 +26,35 @@ block content
                         p.text-warning
                            | #{user.email}
                     #wishlist.tab-pane
-                        each product in user.list
+                        each product in wishlist
                             p.text-warning
                                 a(href=`/products/${product.id}`) #{product.name}
                     #edit.tab-pane
-                        form(method="POST", enctype="multipart/form-data", class="my-3")
+                        form(autocomplete="off", method="POST", enctype="multipart/form-data", class="my-3")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label User name
                                 .col-lg-9
-                                    input.form-control(type='text', id = "username", name = "username", value= user.username)
+                                    input.form-control(autocomplete="off", type='text', id = "username", name = "username", value= user.username)
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Email
                                 .col-lg-9
-                                    input.form-control(type='email', id = "email", name = "email", value= user.email)
+                                    input.form-control(autocomplete="off", type='email', id = "email", name = "email", value= user.email)
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Password
                                 .col-lg-9
-                                    input.form-control(type='password', id= "password", name='password', value= user.password, pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
+                                    input.form-control(autocomplete="new-password", type='password', id= "password", name='password', placeholder="new password", pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Confirm password
                                 .col-lg-9
-                                    input.form-control(type='password', id="passwordConf" , name='passwordConf', value= user.password)
+                                    input.form-control(autocomplete="off", type='password', id="passwordConf" , name='passwordConf', placeholder="confirm new password")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label Avatar
                                 .col-lg-9
-                                    label(class="custom-file-label" for="useravatar", id="file-upload")
-                                    input(type="file", id="useravatar", class="custom-file-input", name="useravatar")
+                                    label(class="custom-file-label" for="userAvatar", id="file-upload") File upload
+                                    input(autocomplete="off", type="file", id="userAvatar", class="custom-file-input", name="userAvatar")
                             .form-group.row
                                 label.col-lg-3.col-form-label.form-control-label
                                 .col-lg-9
                                     button(type="submit", class="btn btn-primary") Save Changes
             .col-lg-4.order-lg-1.text-center
-                img.img-fluid.img-thumbnail.mx-auto(src=user.avatar, alt='avatar')
+                img(src=user.avatar, alt='avatar', id="avatar-img", class="img-fluid rounded-circle mx-auto")

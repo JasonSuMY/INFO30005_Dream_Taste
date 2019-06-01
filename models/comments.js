@@ -3,8 +3,12 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema(
     {
-        title: {type: String, required: [true, "Comment must have a title"]},
         body: {type: String, required: [true, "Comment body cannot be empty"]},
+        author: {
+            authorID: Schema.Types.ObjectId,
+            name: String,
+            avatar: String
+        }
     }
 ); 
 

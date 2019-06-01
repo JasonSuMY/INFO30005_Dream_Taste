@@ -6,7 +6,7 @@ block content
 
     .container-box
         .mt-5
-            form(id="register-form", action='/register', method="POST")
+            form(id="register-form", action='/register', method="POST", autocomplete="new-password")
                 div
                     input#username(type='text', name='username', required='', placeholder=' ')
                     label(for='username')  Username
@@ -15,7 +15,7 @@ block content
                     label(for='email') Email Address
 
                 div
-                    input#password(type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
+                    input#password(autocomplete="new-password", type='password', name='password', required='', placeholder=' ', pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}")
                     label(for='password') Password
                     .requirements
                         | Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.

@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema(
     {
         username: {type: String, unique: true, required: true, trim: true},
         password: {type: String, required: true},
-        avatar: {type: String, default: '//placehold.it/250'},
+        avatar: {type: String, default: '/images/default_avatar.png'},
         email: {type: String, unique: true, required: true, trim: true},
         list: [{type: Schema.Types.ObjectId, ref: "Products"}]
     }
@@ -40,7 +40,7 @@ UserSchema.statics.authenticate = function(email, password, cb) {
                 if (result == true) {
                     return cb(null, user);
                 } else {
-                    return cb();
+                    return cb(err);
                 }
             });
          });

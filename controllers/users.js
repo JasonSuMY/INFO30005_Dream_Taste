@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 const Products = mongoose.model('Products');
+const path = require('path');
 
 // Used to upload image.
 const multer = require('multer');
@@ -27,7 +28,7 @@ const storage = cloudinaryStorage({
 // Initialise upload.
 const upload = multer({
     storage: storage,
-    limits : {fileSize:  250 * 250 * 5},
+    limits : {fileSize:  1024 * 1024 * 5},
     fileFilter: function(req, file, next) {
         checkFileType(file, next);
     }
@@ -50,6 +51,17 @@ function checkFileType(file, next) {
         next("Error: Images only!");
     }
 }
+
+let uploadAvatar = function(req, res, next) {
+    upload(req, res, function(err) {
+        if (err) {
+            req.flash("error", `${err}`);
+            res.redirect("back");
+        } else {
+            next();
+        }
+    });
+};
 
 let login = function(req, res) {
     res.render("login", {
@@ -107,6 +119,7 @@ let register = function(req, res, next) {
 
 let displayProfile = function(req, res, next) {
     Users.findById(req.session.userID).
+        populate("list").
         exec(function(err, user) {
             if (err) {
                 return next(err);
@@ -118,7 +131,8 @@ let displayProfile = function(req, res, next) {
                 } else {
                     res.render('profile', {
                         title: `Profile`,
-                        user: user
+                        user: user,
+                        wishlist: user.list
                     });
                 }
             }
@@ -137,129 +151,58 @@ let logout = function(req, res, next) {
     }
 };
 
-let editUserName = function(req, res, next) {
-    Users.findById(req.session.userID).
-        exec(function(err, user) {
-            if(err) {
-                return next(err);
-            } else {
-                if (req.body.username !== null) {
-                    user.username = req.body.username;
-                } else {
-                    const err = new Error("Invalid Username");
-                    err.status = 400;
-                    return next(err);
-                }
-                user.save(function(err){
-                    if (!err){
-                        req.flash("success", "Edit Successfully.");
-                        res.redirect('/profile');
-                    } else{
-                        req.flash("error", `Fail to edit. ${err}`);
-                        res.redirect("back");
-                    }
-                });
-            }
-    })
-};
+let editUser = function(req, res, next) {
 
-let editPassword = function(req, res, next) {
-    Users.findById(req.session.userID).
-    exec(function(err, user) {
-        if(err) {
-            return next(err);
-        } else {
-            if (req.body.password !== null && req.body.password === req.body.passwordConf) {
-                user.password = req.body.password;
-            } else {
-                const err = new Error("Invalid Password");
-                err.status = 400;
-                return next(err);
-            }
-            user.save(function(err, user){
-                if (!err){
-                    req.flash("success", "Edit Successfully.");
-                    res.redirect('/profile');
-                } else{
-                    req.flash("error", `Fail to edit. ${err}`);
-                    res.redirect("back");
-                }
-            });
-        }
-    })
-};
+    if (req.body.password !== req.body.passwordConf) {
+        req.flash("error", "Passwords do not match.");
+        res.redirect("back");
+    }
 
-let editEmail = function(req, res, next) {
-    Users.findById(req.session.userID).
-    exec(function(err, user) {
-        if(err) {
-            return next(err);
-        } else {
-            if (req.body.email !== null) {
-                user.email = req.body.email;
-            } else {
-                const err = new Error("Invalid Email");
-                err.status = 400;
-                return next(err);
-            }
-            user.save(function(err){
-                if (!err){
-                    req.flash("success", "Edit Successfully.");
-                    res.redirect('/profile');
-                } else{
-                    req.flash("error", `Fail to edit. ${err}`);
-                    res.redirect("back");
-                }
-            });
-        }
-    })
-};
+    let userAvatar = undefined;
+    let newPassword = undefined;
 
-let editAvatar = function(req, res, next) {
-    Users.findById(req.session.userID).
-    exec(function(err, user) {
-        user.avatar = req.file.url;
-        user.save(function(err) {
-            if (!err){
-                req.flash("success", "Avatar is uploaded.");
+    if (req.file && req.file.url) {
+        userAvatar = req.file.url;
+    }
+
+    if (req.body.password) {
+        newPassword = req.body.password;
+    }
+
+    Users.findOneAndUpdate({_id: req.session.userID}, 
+        {$set: {
+            username: req.body.username,
+            email: req.body.email,
+            password: newPassword,
+            avatar: userAvatar
+        }}, {omitUndefined: true}).
+            exec(function(err, user) {
+            if (!err) {
+                req.flash("success", "Edit Successfully.");
                 res.redirect('/profile');
-            } else{
-                req.flash("error", `Fail to upload avatar. ${err}`);
+            } else {
+                req.flash("error", `Fail to edit. ${err}`);
                 res.redirect("back");
             }
-        })
-    })
-};
-
-let uploadAvatar = function(req, res, next) {
-    upload(req, res, function(err) {
-        if (err) {
-            req.flash("error", `${err}`);
-            res.redirect("back");
-        } else {
-            next();
-        }
-    });
+        });
 };
 
 let addToWishlist = function (req, res, next) {
     const id = req.params.id;
     const userID = req.session.userID;
 
-    Users.findByID = (userID, function(err, user){
-        if(!err) {
-            Products.findById = (id, function(err, product){
-                user.list.push(product);
-                user.save(function(err) {
-                    if (!err) {
-                        res.redirect(`/products/${id}`);
-                    } else {
-                        return next(err);
-                    }
-                });
+    Products.findById(id, function(err, product) {
+        if (!err) {
+            Users.findByIdAndUpdate(userID, {$push: {list: product}}, function(err, user) {
+                if (!err) {
+                    req.flash("success", `Add ${product.name} to wish list`);
+                    res.redirect(`/products/${id}`);
+                } else {
+                    next(err);
+                }
             });
         } else {
-            return next(err);
+            next(err);
         }
     });
 }
@@ -269,9 +212,6 @@ module.exports.displayRegister = displayRegister;
 module.exports.register = register;
 module.exports.displayProfile = displayProfile;
 module.exports.logout = logout;
-module.exports.editUserName = editUserName;
-module.exports.editPassword = editPassword;
-module.exports.editEmail = editEmail;
-module.exports.editAvatar = editAvatar;
 module.exports.uploadAvatar = uploadAvatar;
 module.exports.addToWishlist = addToWishlist;
+module.exports.editUser = editUser;

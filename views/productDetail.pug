@@ -31,14 +31,20 @@ block content
                 p(class="card-text") #{product.description}
                 form(method="POST", action=`/addToWishlist/${product._id}`)
                     button(type = "submit", class ="btn btn-warning ") Add to wish list
+
         .row
             h1(class = "col-md-12 text-center") Comments
 
         each comment in comments
             div(class="row justify-content-center")
-                div(class = "col-md-8 card mb-3")
-                    h4(class = "card-title") #{comment.title}
-                    p(class = "card-text") #{comment.body}
+                .col-md-1
+                    img(src=`${comment.author.avatar}`, class="rounded-circle user-avatar align-middle")
+                .col-md-8.my-2
+                    .card
+                        .card-header
+                            h4 #{comment.author.name}
+                        .card-body
+                            p.card-text #{comment.body}
 
         div(class="row justify-content-center")
             button(class="col-md-8 btn btn-warning text-center my-2", data-toggle="modal", data-target="#addComment") Add Comment
@@ -52,9 +58,6 @@ block content
                         
                         div(class="modal-body")
                             form(method="POST", action=`/addComment/${product._id}`)
-                                .form-group
-                                    label(for="title") Title
-                                    input(type="text", class="form-control", name="title", placeholder="Comment Title")
                                 .form-group
                                     label(for="body") Content
                                     textarea(class="form-control", rows=5, name="body", placeholder="Write comment..")
