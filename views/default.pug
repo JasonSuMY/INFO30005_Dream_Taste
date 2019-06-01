@@ -32,7 +32,7 @@ html
                     .col-md-3
                         form(class="form-inline ", action="/search", method="POST")
                             .input-group
-                                input(type="text", name="search", id="search", class="form-control", placeholder="Search")
+                                input(type="text", name="search", id="search", class="form-control", placeholder="Search", required)
                                 .input-group-append
                                     button(type="submit", class="btn btn-warning") Search
                     if authenticated
