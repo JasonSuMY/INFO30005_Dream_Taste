@@ -50,9 +50,8 @@ app.use('/', routes);
 // error handler
 app.use(function(err, req, res, next) {
    res.status(err.status || 500);
-   res.render("error", {
-      message: err.message
-   });
+   req.flash("error", err.message);
+   res.redirect("back");
 });
 
 app.listen(PORT, function () {
