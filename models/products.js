@@ -16,9 +16,9 @@ const ProductSchema = new Schema(
 );
 
 // Set the popularity of a product by its number of views and rating.
-ProductSchema.pre('save', function(next) {
-    this.popularity = 50 * this.rating + 50 * this.numOfViews;
-    next();
-});
+// ProductSchema.pre('save', function(next) {
+//     this.popularity = 50 * this.rating + 50 * this.numOfViews;
+//     next();
+// });
 
 mongoose.model('Products', ProductSchema);

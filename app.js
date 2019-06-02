@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 
 // Set up the database.
 const db = require('./models/db.js');
+
+const schedule = require('./node_regular_jobs.js');
 
 // Setting up the bodyparser, so the body of the request can be parsed as JSON
 // object.
@@ -15,10 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Setting up the configuration of a user session.
-// app.use(cookieParser);
+app.use(cookieParser());
 app.use(session({
    secret: "matrix",
-   cookie: {maxAge: 12 * 3600 * 10},
+   cookie: {maxAge: 12 * 3600 * 1000},
    resave: true,
    saveUninitialized: false,
    store: new MongoStore({mongooseConnection: db.db})
