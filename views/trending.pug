@@ -3,6 +3,12 @@ extends default
 block content
     - var rank = 1
     .container-fluid
+        .row.m-3.bg-light.ranking-header
+            h1.col-md-1 Rank
+            h1.col-md-3
+            h1.col-md-2 Name
+            h1.col-md-3 Rating
+            h1.col-md-3 Views
 
         .card-column
             each product in products
@@ -11,8 +17,7 @@ block content
                     .col-md-3
                         img(src=`${product.image}`, alt=`${product.name}'s image`, class="img-thumbnail")
                     a(href=`/products/${product.id}`, class="col-md-2") #{product.name}
-                    p.col-md-2 #{product.rating}
-                    p.col-md-2 #{product.numOfViews}
-                    p.col-md-2 #{product.popularity}
+                    p.col-md-3 #{product.rating}
+                    p.col-md-3 #{product.numOfViews}
 
                 - rank += 1

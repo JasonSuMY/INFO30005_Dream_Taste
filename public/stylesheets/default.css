@@ -6,6 +6,14 @@
     display: block;
 }
 
+@font-face {
+    font-family: 'Painter';
+    src: url('../fonts/Painter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    display: block;
+}
+
 a:hover {
     color: inherit;
 }
