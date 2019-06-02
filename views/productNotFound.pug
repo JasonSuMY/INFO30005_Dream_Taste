@@ -4,4 +4,14 @@ block content
     link(rel="stylesheet", href="/stylesheets/containerBox.css")
 
     div(class="container-fluid container-box")
-        h1 Sorry, there is no matched result.
+        div(class="row my-3")
+            h3(class="ml-3") #{title}
+        p
+            |  Your search did not match any products
+            br
+            br
+            | Suggestions:
+        ul
+            li Make sure you type correctly
+            li Try different keywords
+            li Try more keywords

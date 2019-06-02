@@ -175,8 +175,9 @@ let findProductByID = function(req, res, next) {
 
 // Search the products based on the query input by user.
 let search = function(req, res) {
-    var search = req.body.search.split(" ").join("");
-    if(search == ''){
+    var search = req.body.search;
+    const newSearch = search.split(" ").join("");
+    if(newSearch === ''){
         res.render('productNotFound', {
             title: "Product not found!"
         })
