@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+
+require('./users.js');
+require('./products.js');
+require('./comments.js');
+require('./categories.js');
+
 const dbURL = "mongodb+srv://mingyu:Cheng19980610@cluster0-qtfpr.mongodb.net/";
 
 const options = {
@@ -16,7 +22,6 @@ mongoose.connect(dbURL, options, function(err) {
     }
 });
 
-require('./users.js');
-require('./products.js');
-require('./comments.js');
-require('./categories.js');
+const db = mongoose.connection;
+
+module.exports.db = db;
