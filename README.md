@@ -16,6 +16,7 @@ A web application to present information related to drinks, and everyone can fin
 - **Add to wishlist** A user can add products to their own wishlist
 - **Rating** A user can rate product(1 star - 5 stars)
 - **Edit User** A user can edit his own information and upload avatar
+- **Trending** A user can see top 10 popular drinks
 ## Routes:
 - **Add product:** `/products/addProduct` 
 ```
@@ -58,6 +59,12 @@ Example: https://dream-taste.herokuapp.com/products/5cd8f4bcfb120e00ccce1c76
 ```
 Example: https://dream-taste.herokuapp.com/profile
 ```
+
+- **Trending** `/trending`
+```
+Example: https://dream-taste.herokuapp.com/trending
+```
+
 ## Reference to source coce:
 All routes related code are written within `route.js`
 - **Add product:**
@@ -126,3 +133,10 @@ All routes related code are written within `route.js`
     - /controllers/user.js
   - Models:
     - /models/products.js
+-  **Trending**
+   - Views:
+       - trending.pug
+   - Controllers:
+       - /controllers/product.js
+   - Models:
+       - /models/products.js
