@@ -183,7 +183,7 @@ let search = function(req, res) {
         })
     }
     Products.find({name: { 
-                        "$regex": search,
+                        "$regex": newSearch,
                         "$options": "i"
                     }}, function(err, products) {
         if (err) {
