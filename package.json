@@ -25,7 +25,7 @@
   "homepage": "https://github.com/JasonSuMY/INFO30005_Dream_Taste#readme",
   "dependencies": {
     "GridFS": "^0.3.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.14.0",
     "connect-flash": "^0.1.1",
