@@ -6,8 +6,6 @@ require('./comments.js');
 require('./categories.js');
 require('dotenv').config();
 
-const dbURL = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0-qtfpr.mongodb.net/`;
-
 const options = {
     dbName: "Dream_Taste",
     useNewUrlParser: true,
@@ -15,7 +13,7 @@ const options = {
 };
 
 // Connect to the database.
-mongoose.connect(dbURL, options, function(err) {
+mongoose.connect(process.env.DB_URL, options, function(err) {
     if (!err) {
         console.log("Connected to MongoDB.");
     } else {
