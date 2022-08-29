@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 const Products = mongoose.model('Products');
 const path = require('path');
+require('dotenv').config();
 
 // Used to upload image.
 const multer = require('multer');
@@ -10,9 +11,9 @@ const cloudinaryStorage = require('multer-storage-cloudinary');
 
 // Set up the cloud storage space for image upload.
 cloudinary.config({
-    cloud_name: "hkdac1yvv",
-    api_key: "155176919271884",
-    api_secret: "sfGPuvLSNAsvOIPbCmCDgb7tjYI"
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 
