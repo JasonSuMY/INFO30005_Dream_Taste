@@ -4,8 +4,9 @@ require('./users.js');
 require('./products.js');
 require('./comments.js');
 require('./categories.js');
+require('dotenv').config();
 
-const dbURL = "mongodb+srv://mingyu:Cheng19980610@cluster0-qtfpr.mongodb.net/";
+const dbURL = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0-qtfpr.mongodb.net/`;
 
 const options = {
     dbName: "Dream_Taste",
