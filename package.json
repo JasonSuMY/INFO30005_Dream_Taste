@@ -31,7 +31,7 @@
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
     "dotenv": "^16.0.1",
-    "eslint": "^5.16.0",
+    "eslint": "^10.1.0",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "GridFS": "^0.3.0",
